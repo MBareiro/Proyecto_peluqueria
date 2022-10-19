@@ -124,7 +124,6 @@ $('#formHorario').submit('submit', (event) => {
             afternoon_end: afternoon_end,
         },
         success: (data) => {
-            console.log(data)
             if (data[0] === '0') {
                 Swal.fire({
                     icon: 'error',

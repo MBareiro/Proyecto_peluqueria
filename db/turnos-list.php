@@ -27,7 +27,7 @@ try {
 
 $horarios=[];
 $turnos = [];
-if (!empty($resultado) && mysqli_num_rows($resultado) != 0) {
+if (!empty($result) && mysqli_num_rows($result) != 0) {
     $row = mysqli_fetch_array($result);
     $morning_end = $row['morning_end'];
     $afternoon_start = $row['afternoon_start'];
@@ -78,14 +78,11 @@ if (!empty($resultado) && mysqli_num_rows($resultado) != 0) {
             'email' => $row['email'],
             'telefono' => $row['telefono'],
         );
-    }
-    
+    }    
     
     $turnos = [$turnos_morning, $turnos_afternoon];
     mysqli_close($conexion);
     print json_encode($turnos);
 }
-
-mysqli_close($conexion);
-    print json_encode($turnos);
+//print json_encode($turnos);
 ?>
