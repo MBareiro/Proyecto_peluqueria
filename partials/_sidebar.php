@@ -50,14 +50,14 @@ require('../../db/conexionDb.php');
     </li>    
 
     <li class="nav-item menu-items" id='usuarios'>
-      <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+      <a class="nav-link" data-toggle="collapse" href="#user" aria-expanded="false" aria-controls="user">
         <span class="menu-icon">
           <i class="mdi mdi mdi-account-multiple-outline"></i>
         </span>
         <span class="menu-title">Usuarios</span>
         <i class="menu-arrow"></i>
       </a>
-      <div class="collapse" id="auth">
+      <div class="collapse" id="user">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="../../pages/usuarios/crearUsuario.php"> Crear usuario </a></li>
           <li class="nav-item"> <a class="nav-link" href="../../pages/usuarios/verUsuarios.php"> Ver usuarios </a></li>
@@ -66,14 +66,14 @@ require('../../db/conexionDb.php');
     </li> 
 
     <li class="nav-item menu-items">
-      <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+      <a class="nav-link" data-toggle="collapse" href="#cuenta" aria-expanded="false" aria-controls="auth">
         <span class="menu-icon">
           <i class="mdi mdi mdi-settings"></i>
         </span>
         <span class="menu-title">Cuenta</span>
         <i class="menu-arrow"></i>
       </a>
-      <div class="collapse" id="auth">
+      <div class="collapse" id="cuenta">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="../../pages/cuenta/cambiarContraseña.php"> Contraseña </a></li>
           <li class="nav-item"> <a class="nav-link" href="../../pages/cuenta/CambiarCorreo.php"> Actualizar Email </a></li>

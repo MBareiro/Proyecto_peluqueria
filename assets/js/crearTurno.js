@@ -113,11 +113,12 @@ $(document).ready(function () {
         if (fecha != '') {
             var peluquero_id = $('#peluqueros').val();
             $.post("../../db/disponibilidadTurno.php", { fecha, peluquero_id }, function (response) {
-                //console.log(response)
+                console.log(response)
                 var datos = JSON.parse(response);
                 
                 var hoursMorning = document.getElementById("hoursMorning");
-                if (datos.length !== 0) {
+                if (datos[0].length !== 0) {
+                    console.log(datos.length) 
                     var arr = Object.values(datos[0]);
                     arr.forEach(element => {
                         hoursMorning.innerHTML += `
@@ -128,7 +129,8 @@ $(document).ready(function () {
                             </label>
                         </div>`;
                     });
-                } else {                    
+                } else { 
+                    console.log('ebtri')                   
                     hoursMorning.innerHTML += `
                         <div class="form-check">
                             No hay turnos disponibles
@@ -161,7 +163,7 @@ $(document).ready(function () {
                 var datos = JSON.parse(response);                
                 var hoursAfternoon = document.getElementById("hoursAfternoon");
 
-                if (datos.length !== 0) {
+                if (datos[1].length !== 0) {
                     var arr = Object.values(datos[1]);
                     arr.forEach(element => {
                         hoursAfternoon.innerHTML += `
