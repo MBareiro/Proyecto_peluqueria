@@ -198,9 +198,7 @@ if (isset($_SESSION['id_user']) && isset($_SESSION['id_rol'])) {
     <script src="../../assets/js/todolist.js"></script>
     <!-- endinject -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Custom js for this page -->
-    <script src="../../assets/js/dashboard.js"></script>
-    
+    <!-- Custom js for this page -->    
     <script src="../../assets/js/horario.js"></script>
     <!-- End custom js for this page -->
 </body>

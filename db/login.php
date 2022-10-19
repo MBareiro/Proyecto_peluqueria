@@ -12,6 +12,7 @@ $verificar = false;
 if (!empty($resultado) && mysqli_num_rows($resultado) != 0) {
     while ($row = mysqli_fetch_assoc($resultado)) {        
         if (password_verify($password, $row['password'])) {
+            //print($row['id']);
             $verificar = true;
             $_SESSION['id_user'] = $row['id'];
             $_SESSION['id_rol'] = $row['rol'];

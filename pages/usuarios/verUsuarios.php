@@ -171,7 +171,6 @@ if (isset($_SESSION['id_user']) && isset($_SESSION['id_rol'])) {
     <!-- endinject -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Custom js for this page -->
-    <script src="../../assets/js/chart.js"></script>
     <script src="../../assets/js/verUsuarios.js"></script>
     <!-- End custom js for this page -->
 </body>

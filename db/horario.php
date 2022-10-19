@@ -12,12 +12,13 @@ if (empty($_POST["active_afternoon"])) {
     $active_afternoon = 0;
 } else {
     $active_afternoon = $_POST["active_afternoon"];
-    print(sizeof($active_afternoon));
+    //print(sizeof($active_afternoon));
 }
 
 $data = true;
 if (!empty($_POST["morning_start"])  && !empty($_POST["morning_end"]) && !empty($_POST["afternoon_start"]) && !empty($_POST["afternoon_start"])) {
     $user = $_SESSION['id_user'];
+   // print($user);
     $sql = 'SELECT * FROM horarios where user_id = "' . $user . '";';
     $resultado = mysqli_query($conexion, $sql);
 

@@ -13,7 +13,6 @@ if($fecha == 'undefined'){
     $fecha = $DateAndTime;
 }
 
-
 try {
     //Selecciona todas las experiencias de un usuario 
     $query = "SELECT morning_end, afternoon_start FROM horarios Where user_id = '$id' AND day = '$dia'";
@@ -35,8 +34,8 @@ if (!empty($result) && mysqli_num_rows($result) != 0) {
     try {
         //Selecciona todas las experiencias de un usuario 
         $query = "SELECT t.fecha, t.hora, c.nombre, c.apellido, c.email, c.telefono FROM turnos t, clientes c Where t.peluquero_id = '$id' AND t.fecha = '$fecha' AND t.cliente_id = c.id AND  t.hora <= '$morning_end'";
-        $result = mysqli_query($conexion, $query);
-        if (!$result) {
+        $result1 = mysqli_query($conexion, $query);
+        if (!$result1) {
             die('Query failed!' . mysqli_error($conexion));
         }
     } catch (Exception $e) {
@@ -44,7 +43,7 @@ if (!empty($result) && mysqli_num_rows($result) != 0) {
     }
     
     $turnos_morning = array();
-    while ($row = mysqli_fetch_array($result)) {
+    while ($row = mysqli_fetch_array($result1)) {
         
         $turnos_morning[] = array(
             'hora' => $row['hora'],

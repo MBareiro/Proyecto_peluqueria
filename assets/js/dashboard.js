@@ -266,6 +266,7 @@ function fetchExps(fecha) {
       type: "POST",
       data: "&fecha=" + fecha,
       success: function (response) {
+       // console.log(response)
           const turnos = JSON.parse(response);
           if(turnos.length !== 0){
             let template = "";

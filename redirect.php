@@ -1,7 +1,7 @@
 <?php
 session_start();
 require('./db/conexionDb.php');
-
+print($_SESSION['id_user']);
 if (isset($_SESSION['id_user']) && isset($_SESSION['id_rol'])) {
     $sql = 'SELECT id from roles where id in(SELECT rol from users where
      id =' . $_SESSION['id_user'] . ')';

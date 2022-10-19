@@ -93,7 +93,7 @@ $max = $Object->modify('+14 day')->format("Y-m-d");
                                     <div class="form-group row">
                                         <label for="telefono" class="col-sm-3 col-form-label">Telefono</label>
                                         <div class="col-sm-9">
-                                            <input type="tel" class="form-control" id="telefono" placeholder="telefono">
+                                            <input type="tel" class="form-control" id="telefono" placeholder="Telefono">
                                         </div>
                                     </div>
 
@@ -186,8 +186,6 @@ $max = $Object->modify('+14 day')->format("Y-m-d");
     <!-- endinject -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Custom js for this page -->
-    <script src="../../assets/js/dashboard.js"></script>
-
     <script src="../../assets/js/crearTurno.js"></script>
     <!-- End custom js for this page -->
 </body>

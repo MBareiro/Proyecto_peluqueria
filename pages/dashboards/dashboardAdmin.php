@@ -2,7 +2,6 @@
 session_start();
 require('../../db/conexionDb.php');
 
-
 if (isset($_SESSION['id_user']) && isset($_SESSION['id_rol'])) {
   $sql = 'SELECT id from roles where descripcion = "administrador"';
   $resultado = mysqli_query($conexion, $sql);

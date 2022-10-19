@@ -34,7 +34,7 @@ $('#formLogin').submit('submit', (event) => {
               background: 'darkslategrey',
             });
           } else {
-               window.location.href = '../../redirect.php';      
+              window.location.href = '../../redirect.php';      
           }
         },
       });
