@@ -4,11 +4,12 @@ $email = $_POST['email'];
 $bytes = random_bytes(5);
 $token = bin2hex($bytes);
 
-include "mail_reset.php";
-$data = false;
-if ($enviado) {
-    $conexion->query("INSERT into passwords(email, token, codigo) 
-         values('$email','$token','$codigo') ") or die($conexion->error);
-    $data = true;
+$result = $conexion->query("SELECT email FROM users WHERE email= '$email'") or die($conexion->error);
+if (!empty($result) && mysqli_num_rows($result) != 0) {
+    include "mail_reset.php";    
+    if ($enviado) {
+        $conexion->query("INSERT into passwords(email, token, codigo) 
+             values('$email','$token','$codigo') ") or die($conexion->error);
+    }
 }
-print json_encode($data);
+mysqli_close($conexion);

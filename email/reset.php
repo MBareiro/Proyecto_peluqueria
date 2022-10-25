@@ -39,11 +39,11 @@ if (isset($_GET['email'])  && isset($_GET['token'])) {
                             <h3 class="card-title text-left mb-3">Restablecer Password</h3>
                             <form id="reset" action="./php/verificartoken.php" method="POST">
                                 <div class="form-group">
-                                    <label for="c" class="form-label">Codigo</label>
+                                    <label for="codigo" class="form-label">Codigo</label>
                                     <input type="number" class="form-control" id="codigo" name="codigo">
                                     
-                                    <input type="hidden" class="form-control" id="c" name="email" value="<?php echo $email; ?>">
-                                    <input type="hidden" class="form-control" id="c" name="token" value="<?php echo $token; ?>">
+                                    <input type="hidden" class="form-control" id="email" name="email" value="<?php echo $email; ?>">
+                                    <input type="hidden" class="form-control" id="token" name="token" value="<?php echo $token; ?>">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Restablecer</button>
                             </form>

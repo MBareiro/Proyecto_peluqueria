@@ -58,19 +58,18 @@ if (mysqli_num_rows($res) > 0) {
                             <h3 class="card-title text-left mb-3">Restablecer Password</h3>
                             <?php if ($correcto) { ?>
                                 <form id="verificartoken" class="" action="" method="POST">
+
                                     <div class="mb-3">
-                                        <label for="c" class="form-label">Nuevo Password</label>
+                                        <label for="p1" class="form-label">Nuevo Password</label>
                                         <input type="password" class="form-control" id="p1" name="p1">
-
                                     </div>
+
                                     <div class="mb-3">
-                                        <label for="c" class="form-label">Confirmar Password</label>
-                                        <input type="password" class="form-control" id="p2" name="p2">
-
-                                        <input type="hidden" class="form-control" id="c" name="email" value="<?php echo $email ?>">
-
+                                        <label for="p2" class="form-label">Confirmar Password</label>
+                                        <input type="password" class="form-control" id="p2" name="p2">      
                                     </div>
-
+                                    
+                                    <input type="hidden" class="form-control" id="email" name="email" value="<?php echo $email ?>">
                                     <button type="submit" class="btn btn-primary">Cambiar</button>
                                 </form>
                             <?php } else { ?>
@@ -96,7 +95,7 @@ if (mysqli_num_rows($res) > 0) {
     <script src="../../assets/js/hoverable-collapse.js"></script>
     <script src="../../assets/js/misc.js"></script>
     <script src="../../assets/js/settings.js"></script>
-    <script src="../../assets/js/todolist.js"></script>    
+    <script src="../../assets/js/todolist.js"></script>
     <script src="../../assets/js/verificartoken.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- endinject -->

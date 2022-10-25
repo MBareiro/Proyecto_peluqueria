@@ -126,11 +126,8 @@ if (isset($_SESSION['id_user']) && isset($_SESSION['id_rol'])) {
                                                 </select>
                                             </div>
                                         </div>
-
-                                        <button type="submit" id="cerrarModal" class="btn btn-primary mr-2">Crear</button>
+                                        <button type="submit" id="cerrarModal" class="btn btn-primary mr-2">Guardar</button>
                                     </form>
-
-
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

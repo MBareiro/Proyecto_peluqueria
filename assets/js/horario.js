@@ -127,11 +127,15 @@ $('#formHorario').submit('submit', (event) => {
             if (data[0] === '0') {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Usuario y/o Contraseña incorrecta',
+                    title: 'Ups! algo no salio bien!',
                     background: 'darkslategrey',
                 });
             } else {
-                //window.location.href = '../../redirect.php';
+                Swal.fire({
+                icon: 'success',
+                title: 'Correcto!',
+                background: 'darkslategrey',
+                });
             }
         },
     });

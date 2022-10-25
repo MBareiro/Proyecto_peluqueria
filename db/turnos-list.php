@@ -9,7 +9,7 @@ $DateAndTime = $Object->format("Y-m-d");
 $date = strtotime($DateAndTime);
 $dia = date("w", $date);
 
-if($fecha == 'undefined'){
+if($fecha == 'undefined'){    
     $fecha = $DateAndTime;
 }
 

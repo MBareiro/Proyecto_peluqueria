@@ -113,19 +113,19 @@ $(document).ready(function () {
         if (fecha != '') {
             var peluquero_id = $('#peluqueros').val();
             $.post("../../db/disponibilidadTurno.php", { fecha, peluquero_id }, function (response) {
-                console.log(response)
+                //console.log(response)
                 var datos = JSON.parse(response);
                 
                 var hoursMorning = document.getElementById("hoursMorning");
                 if (datos[0].length !== 0) {
-                    console.log(datos.length) 
                     var arr = Object.values(datos[0]);
                     arr.forEach(element => {
+                        var horaMorn = element.slice(0, -3);
                         hoursMorning.innerHTML += `
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="flexRadioDefault" id="horaMañana" value=" ${element}">
                             <label class="form-check-label" for="flexRadioDefault1">
-                            ${element}
+                            ${horaMorn}
                             </label>
                         </div>`;
                     });
@@ -166,11 +166,12 @@ $(document).ready(function () {
                 if (datos[1].length !== 0) {
                     var arr = Object.values(datos[1]);
                     arr.forEach(element => {
+                        var horaTarde = element.slice(0, -3);
                         hoursAfternoon.innerHTML += `
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="flexRadioDefault" id="horaTarde" value=" ${element}">
                             <label class="form-check-label" for="flexRadioDefault1">
-                            ${element}
+                            ${horaTarde}
                             </label>
                         </div>`;
                     });

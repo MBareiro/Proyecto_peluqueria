@@ -1,9 +1,9 @@
-(function($) {
+(function ($) {
   'use strict';
-  $.fn.andSelf = function() {
+  $.fn.andSelf = function () {
     return this.addBack.apply(this, arguments);
   }
-  $(function() {
+  $(function () {
     if ($("#currentBalanceCircle").length) {
       var bar = new ProgressBar.Circle(currentBalanceCircle, {
         color: '#000',
@@ -20,20 +20,20 @@
         from: { color: '#d53f3a', width: 12 },
         to: { color: '#d53f3a', width: 12 },
         // Set default step function for all animate calls
-        step: function(state, circle) {
+        step: function (state, circle) {
           circle.path.setAttribute('stroke', state.color);
           circle.path.setAttribute('stroke-width', state.width);
-      
+
           var value = Math.round(circle.value() * 100);
           circle.setText('');
-      
+
         }
       });
 
       bar.text.style.fontSize = '1.5rem';
       bar.animate(0.4);  // Number from 0.0 to 1.0
     }
-    if($('#audience-map').length) {
+    if ($('#audience-map').length) {
       $('#audience-map').vectorMap({
         map: 'world_mill_en',
         backgroundColor: 'transparent',
@@ -63,13 +63,13 @@
     }
     if ($("#transaction-history").length) {
       var areaData = {
-        labels: ["Paypal", "Stripe","Cash"],
+        labels: ["Paypal", "Stripe", "Cash"],
         datasets: [{
-            data: [55, 25, 20],
-            backgroundColor: [
-              "#111111","#00d25b","#ffab00"
-            ]
-          }
+          data: [55, 25, 20],
+          backgroundColor: [
+            "#111111", "#00d25b", "#ffab00"
+          ]
+        }
         ]
       };
       var areaOptions = {
@@ -79,9 +79,9 @@
         cutoutPercentage: 70,
         elements: {
           arc: {
-              borderWidth: 0
+            borderWidth: 0
           }
-        },      
+        },
         legend: {
           display: false
         },
@@ -90,22 +90,22 @@
         }
       }
       var transactionhistoryChartPlugins = {
-        beforeDraw: function(chart) {
+        beforeDraw: function (chart) {
           var width = chart.chart.width,
-              height = chart.chart.height,
-              ctx = chart.chart.ctx;
-      
+            height = chart.chart.height,
+            ctx = chart.chart.ctx;
+
           ctx.restore();
           var fontSize = 1;
           ctx.font = fontSize + "rem sans-serif";
           ctx.textAlign = 'left';
           ctx.textBaseline = "middle";
           ctx.fillStyle = "#ffffff";
-      
-          var text = "$1200", 
-              textX = Math.round((width - ctx.measureText(text).width) / 2),
-              textY = height / 2.4;
-      
+
+          var text = "$1200",
+            textX = Math.round((width - ctx.measureText(text).width) / 2),
+            textY = height / 2.4;
+
           ctx.fillText(text, textX, textY);
 
           ctx.restore();
@@ -115,10 +115,10 @@
           ctx.textBaseline = "middle";
           ctx.fillStyle = "#6c7293";
 
-          var texts = "Total", 
-              textsX = Math.round((width - ctx.measureText(text).width) / 1.93),
-              textsY = height / 1.7;
-      
+          var texts = "Total",
+            textsX = Math.round((width - ctx.measureText(text).width) / 1.93),
+            textsY = height / 1.7;
+
           ctx.fillText(texts, textsX, textsY);
           ctx.save();
         }
@@ -133,13 +133,13 @@
     }
     if ($("#transaction-history-arabic").length) {
       var areaData = {
-        labels: ["Paypal", "Stripe","Cash"],
+        labels: ["Paypal", "Stripe", "Cash"],
         datasets: [{
-            data: [55, 25, 20],
-            backgroundColor: [
-              "#111111","#00d25b","#ffab00"
-            ]
-          }
+          data: [55, 25, 20],
+          backgroundColor: [
+            "#111111", "#00d25b", "#ffab00"
+          ]
+        }
         ]
       };
       var areaOptions = {
@@ -149,9 +149,9 @@
         cutoutPercentage: 70,
         elements: {
           arc: {
-              borderWidth: 0
+            borderWidth: 0
           }
-        },      
+        },
         legend: {
           display: false
         },
@@ -160,22 +160,22 @@
         }
       }
       var transactionhistoryChartPlugins = {
-        beforeDraw: function(chart) {
+        beforeDraw: function (chart) {
           var width = chart.chart.width,
-              height = chart.chart.height,
-              ctx = chart.chart.ctx;
-      
+            height = chart.chart.height,
+            ctx = chart.chart.ctx;
+
           ctx.restore();
           var fontSize = 1;
           ctx.font = fontSize + "rem sans-serif";
           ctx.textAlign = 'left';
           ctx.textBaseline = "middle";
           ctx.fillStyle = "#ffffff";
-      
-          var text = "$1200", 
-              textX = Math.round((width - ctx.measureText(text).width) / 2),
-              textY = height / 2.4;
-      
+
+          var text = "$1200",
+            textX = Math.round((width - ctx.measureText(text).width) / 2),
+            textY = height / 2.4;
+
           ctx.fillText(text, textX, textY);
 
           ctx.restore();
@@ -185,10 +185,10 @@
           ctx.textBaseline = "middle";
           ctx.fillStyle = "#6c7293";
 
-          var texts = "مجموع", 
-              textsX = Math.round((width - ctx.measureText(text).width) / 1.93),
-              textsY = height / 1.7;
-      
+          var texts = "مجموع",
+            textsX = Math.round((width - ctx.measureText(text).width) / 1.93),
+            textsY = height / 1.7;
+
           ctx.fillText(texts, textsX, textsY);
           ctx.save();
         }
@@ -247,70 +247,112 @@
         }
       });
     }
-    });
+  });
 
 })(jQuery);
 
 
-if($('#rol').val() != 1 && $('#rol').val() == 2){
+if ($('#rol').val() != 1 && $('#rol').val() == 2) {
   //console.log('asdasd')
   var menu = document.getElementById("menu");
   var crearUsuario = document.getElementById("usuarios");
   var garbage = menu.removeChild(crearUsuario);
 }
 
-function fetchExps(fecha) {
+function fetchturns(fecha) {
   //console.log(fecha)
   $.ajax({
-      url: "../../db/turnos-list.php",
-      type: "POST",
-      data: "&fecha=" + fecha,
-      success: function (response) {
-       // console.log(response)
-          const turnos = JSON.parse(response);
-          if(turnos.length !== 0){
-            let template = "";
-            let count = 1;
-            turnos[0].forEach((turnos) => {
-                template += `
+    url: "../../db/turnos-list.php",
+    type: "POST",
+    data: "&fecha=" + fecha,
+    success: function (response) {
+      // console.log(response)
+      const turnos = JSON.parse(response);
+      if (turnos.length !== 0) {
+        let template = "";
+        let count = 1;
+        turnos[0].forEach((turnos) => {
+          var horaMorn = turnos.hora.slice(0, -3);
+          template += `
                 <tr user_id="${turnos.id}">  
                   <td>${count}</td>
                   <td>${turnos.nombre}</td>
                   <td>${turnos.apellido}</td>
-                  <td>${turnos.hora}</td>
+                  <td>${horaMorn}</td>
                   <td>${turnos.fecha}</td>
-                  <td>${turnos.telefono}</td>                                        
+                  <td>${turnos.telefono}</td>      
+                  <td><button class="turn-delete btn btn-danger" style="width: 100%;">
+                  Borrar
+                </button></td>                                     
                 </tr>                   
                 `;
-                count++;
-            });
-            $("#users").html(template);
-            
-            let template2 = "";
-            count = 1;
-            //console.log(turnos[1])
-            turnos[1].forEach((turnos2) => {
-              //console.log('AAA')
-              template2 += `
+          count++;
+        });
+        $("#users").html(template);
+
+        let template2 = "";
+        count = 1;
+        //console.log(turnos[1])
+        turnos[1].forEach((turnos2) => {
+          var horaTarde = turnos2.hora.slice(0, -3);
+          //console.log('AAA')
+          template2 += `
               <tr user_id="${turnos2.id}">  
                 <td>${count}</td>
                 <td>${turnos2.nombre}</td>
                 <td>${turnos2.apellido}</td>
-                <td>${turnos2.hora}</td>
+                <td>${horaTarde}</td>
                 <td>${turnos2.fecha}</td>
-                <td>${turnos2.telefono}</td>                                        
+                <td>${turnos2.telefono}</td>
+                <td><button class="turn-delete btn btn-danger" style="width: 100%;">
+                Borrar
+              </button></td>                                           
               </tr>                   
               `;
-              count++;
-          });
-          $("#turnos_tarde").html(template2);
-          }          
-      },
+          count++;
+        });
+        $("#turnos_tarde").html(template2);
+      }
+    },
   });
 }
 $('#fecha').change(function () {
-  fetchExps(document.getElementById("fecha").value);
-  
+  fetchturns(document.getElementById("fecha").value);
+
 });
 
-fetchExps();
+fetchturns();
+
+$(document).on("click", ".turn-delete", function () {
+  Swal.fire({
+    title: 'Estas seguro?',
+    icon: 'warning',
+    background: 'darkslategrey',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Si!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const element = $(this)[0].parentElement.parentElement;
+      const id = $(element).attr("user_id");
+
+      $.post("../../db/cancelarTurno.php", { id }, function (response) {
+        console.log(response);
+        fetchturns();
+        $("#form-turn").trigger("reset");
+        Swal.fire({
+          title: 'Borrado!',
+          icon: 'success',
+          background: 'darkslategrey',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'Ok!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      });
+      
+    }
+  })
+
+});

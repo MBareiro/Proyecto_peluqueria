@@ -55,7 +55,7 @@ if (!empty($horarios) && mysqli_num_rows($horarios) != 0) {
             array_push($intervalosAfter, $i->format('H:i:s'));
         }
     } else {
-        while ($afternoon_start->format('H:i') < $afternoon_end->format('H:i:s')) {
+        while ($afternoon_start->format('H:i:s') < $afternoon_end->format('H:i:s')) {
             array_push($intervalosAfter, $afternoon_start->format('H:i:s'));
             $afternoon_start->modify('+30 minute');
         }

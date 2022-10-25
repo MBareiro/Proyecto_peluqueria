@@ -73,8 +73,6 @@ if (isset($_SESSION['id_user']) && isset($_SESSION['id_rol'])) {
                 </label></div>
                 </div>
 
-                
-
                 <div class="table-responsive">
                   <table class="table table-striped">
                     <p>Turnos de la mañana</p>

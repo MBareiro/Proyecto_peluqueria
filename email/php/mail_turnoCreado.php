@@ -4,8 +4,7 @@
 $to  = $email; // atención a la coma
 //$para .= 'wez@example.com';
 // título
-$subject = 'Restablecer contraseña';
-$codigo = rand(1000, 9999);
+$subject = 'Reservacion completa';
 // mensaje
 $body = '
 <!DOCTYPE html>
@@ -105,13 +104,12 @@ $body = '
     <title>Get this responsive email template</title>
 
 </head>
-
 <!-- BODY -->
 <!-- Set message background color (twice) and text color (twice) -->
-
 <body topmargin="0" rightmargin="0" bottommargin="0" leftmargin="0" marginwidth="0" marginheight="0" width="100%" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; width: 100%; height: 100%; -webkit-font-smoothing: antialiased; text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; line-height: 100%;
 	background-color: #F0F0F0;
 	color: #000000;" bgcolor="#F0F0F0" text="#000000">
+    <input type="hidden" id="turno_id" value="' .$turno_id.'">
 
     <!-- SECTION / BACKGROUND -->
     <!-- Set message background color one again -->
@@ -177,7 +175,7 @@ $body = '
 			padding-top: 25px; 
 			color: #000000;
 			font-family: sans-serif;" class="paragraph">
-                            Recientemente has solicitado restablecer tu contraseña, por favor sigue el proceso como se te indica. En caso de que no hayas sido tu quien solicito reestablecer, por favor haz caso omiso a este mensaje
+                            Turno creado con exito! En caso de no poder asistir presione el boton (No se puede cancelar en el dia del turno).
                         </td>
                     </tr>
 
@@ -188,20 +186,28 @@ $body = '
 			padding-top: 25px;
 			padding-bottom: 5px;" class="button">
                                 <table border="0" cellpadding="0" cellspacing="0" align="center" style="max-width: 240px; min-width: 120px; border-collapse: collapse; border-spacing: 0; padding: 0;">
-                                <h3>' . $codigo . '</h3>    
-                                <tr>
-                                        <td align="center" valign="middle" style="padding: 12px 24px; margin: 0; text-decoration: underline; border-collapse: collapse; border-spacing: 0; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px;" bgcolor="#E9703E"><a target="_self" style="text-decoration: underline;
-					color: #FFFFFF; font-family: sans-serif; font-size: 17px; font-weight: 400; line-height: 120%;" href="http://localhost/peluqueria/email/reset.php?email=' . $email . '&token=' . $token . '">
-                                                Cambiar contraseña
-                                            </a>
-                                        </td>
-                                    </tr>
+                                <tr><td align="center" valign="middle" style="padding: 12px 24px; margin: 0; text-decoration: underline; border-collapse: collapse; border-spacing: 0; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px;"
+                                bgcolor="#E9703E">
+                                <a target="_self" style="text-decoration: underline;
+                                color: #FFFFFF; font-family: sans-serif; font-size: 17px; font-weight: 400; line-height: 120%;"
+                                href="http://localhost/peluqueria/pages/turnos/cancelar.php?turno_id=' . $turno_id . '&fecha=' . $fecha . '">
+                                    Cancelar turno
+                                </a>
+                        </td></tr>
+                                
                                 </table>
                             </a>
                         </td>
                     </tr>
 
-                   
+                    <!-- LINE -->
+                    <!-- Set line color -->
+                    <tr>
+                        <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%;
+			padding-top: 25px;" class="line">
+                            <hr color="#E0E0E0" align="center" width="100%" size="1" noshade style="margin: 0; padding: 0;" />
+                        </td>
+                    </tr>
 
                     <!-- LIST -->
                     <tr>
@@ -212,17 +218,16 @@ $body = '
                                 <tr>
                                     <!-- LIST ITEM TEXT -->
                                     <!-- Set text color and font family ("sans-serif" or "Georgia, serif"). Duplicate all text styles in links, including line-height -->
-                                    <td align="left" valign="top" style="font-size: 12px; font-weight: 400; line-height: 160%; border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;
-					                padding-top: 25px;                      color: #000000;
-					font-family: sans-serif;" class="paragraph">
-                                        Si el botón de cambiar contraseña no funciona por favor copia y pega el siguiente
-                                        enlace en tu navegador <span style="font-size:11px;">
-                                        http://localhost/peluqueria/email/reset.php?email=' . $email . '&token=' . $token . ' <br><br></span>
-                                    </td>
+                                    
                                 </tr>
+
+                                <!-- LIST ITEM -->
+                                <tr>
+
                             </table>
                         </td>
-                    </tr>                   
+                    </tr>
+                   
 
                     <!-- PARAGRAPH -->
                     <!-- Set text color and font family ("sans-serif" or "Georgia, serif"). Duplicate all text styles in links, including line-height -->
@@ -293,19 +298,9 @@ $body = '
     </table>
 
 </body>
-
 </html>
 ';
-// Para enviar un correo HTML, debe establecerse la cabecera Content-type
-//$cabeceras  = 'MIME-Version: 1.0' . "\r\n";
-//$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-/*
-// Cabeceras adicionales
-$cabeceras .= 'To: Mary <mary@example.com>, Kelly <kelly@example.com>' . "\r\n";
-$cabeceras .= 'From: Recordatorio <cumples@example.com>' . "\r\n";
-$cabeceras .= 'Cc: birthdayarchive@example.com' . "\r\n";
-$cabeceras .= 'Bcc: birthdaycheck@example.com' . "\r\n";
-*/
+
 // Enviarlo
 $headers =  'MIME-Version: 1.0' . "\r\n";
 $headers .= 'From: martinchoo_13@hotmail.com' . "\r\n";

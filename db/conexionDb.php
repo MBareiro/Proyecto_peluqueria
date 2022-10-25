@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('America/Argentina/Buenos_Aires');
 $servername = "localhost";
 // $servername = "https://iaes.edu.ar/phpmyadmin";
 $username = "root";

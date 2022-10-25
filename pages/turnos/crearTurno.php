@@ -86,7 +86,7 @@ $max = $Object->modify('+14 day')->format("Y-m-d");
                                     <div class="form-group row">
                                         <label for="email" class="col-sm-3 col-form-label">Email</label>
                                         <div class="col-sm-9">
-                                            <input type="email" class="form-control" id="email" placeholder="Email">
+                                            <input type="email" class="form-control" id="email" placeholder="Email (Opcional)">
                                         </div>
                                     </div>
 

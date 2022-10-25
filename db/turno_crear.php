@@ -34,8 +34,10 @@ if(!empty($_POST["peluqueros"]) && !empty($_POST["fecha"]) && !empty($_POST["hor
     $sql = "INSERT INTO turnos (fecha, hora, peluquero_id , cliente_id) 
     VALUES ('".$fecha."','".$hora."','".$peluquero_id."','".$cliente_id."');";
 
+    $turno_id = mysqli_insert_id($conexion); 
     if (mysqli_query($conexion, $sql)) {
         $data = true;
+        include "../email/php/mail_turnoCreado.php";
     }else{
         $data = false;
     }

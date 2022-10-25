@@ -1,11 +1,10 @@
 $("#formEdit").submit(function (e) {
     e.preventDefault();   
    
-    console.log($("#user_id").val())
+    //console.log($("#user_id").val())
     const postData = {
       //Toma los valores cargados en los inputs
       id: $("#user_id").val(),
-      username: $("#username").val(),
       nombre: $("#nombre").val(),
       apellido: $("#apellido").val(),
       email: $("#email").val(),
@@ -49,7 +48,7 @@ function fetchExps() {
                     </button>
                   </td>    
                   <td>
-                    <button class="user-delete btn btn-danger" style="width: 100%;">
+                    <button class="btn btn btn-danger user-item">
                       Borrar
                     </button>
                   </td>                                
