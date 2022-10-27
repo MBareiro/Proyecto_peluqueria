@@ -1,10 +1,11 @@
 
 <?php
+session_start();
 require('conexionDb.php');
-
+$id = $_SESSION['id_user'];
 try {
     //Selecciona todas las experiencias de un usuario 
-    $query = "SELECT * FROM users";
+    $query = "SELECT * FROM users where id != '$id'";
     $result = mysqli_query($conexion, $query);
     if (!$result) {
         die('Query failed!' . mysqli_error($conexion));

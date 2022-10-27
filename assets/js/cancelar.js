@@ -12,7 +12,8 @@ $(document).ready(function () {
     if (fecha > hoy) {
         $.post("../../db/cancelarTurno.php", { turno_id }, function (response) {
             var datos = JSON.parse(response);
-            if (datos === 1) {
+            if (datos === 1) {          
+
                 Swal.fire({
                     icon: 'success',
                     title: '¡Turno cancelado!',

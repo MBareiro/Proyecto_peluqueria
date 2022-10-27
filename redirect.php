@@ -15,7 +15,7 @@ if (isset($_SESSION['id_user']) && isset($_SESSION['id_rol'])) {
     // Compruebo de que exista
     if (isset($row['id'])) {
         if ($row['id'] == 1 || $row['id'] == 2) {
-            header('location: /peluqueria/pages/dashboards/dashboardAdmin.php');
+            header('location: /peluqueria/pages/dashboards/dashboard.php');
         } 
     }
     mysqli_close($conexion);

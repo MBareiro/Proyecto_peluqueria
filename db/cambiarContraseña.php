@@ -26,7 +26,7 @@ if(isset($_POST['currentPassword'])
         $passwordHash = password_hash($newPassword, PASSWORD_BCRYPT);
         $sql = "UPDATE users SET password='".$passwordHash."' WHERE id=$idUser";
         if (mysqli_query($conexion, $sql)) {
-            $data = array('usuario'=>$_SESSION['username'], 'verificar'=> true);
+            $data = array('usuario'=>$_SESSION['email'], 'verificar'=> true);
         }else{
             $data = array('usuario'=>'no se concretó la conexion', 'verificar'=> false);
         }

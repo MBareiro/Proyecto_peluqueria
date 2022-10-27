@@ -251,14 +251,6 @@
 
 })(jQuery);
 
-
-if ($('#rol').val() != 1 && $('#rol').val() == 2) {
-  //console.log('asdasd')
-  var menu = document.getElementById("menu");
-  var crearUsuario = document.getElementById("usuarios");
-  var garbage = menu.removeChild(crearUsuario);
-}
-
 function fetchturns(fecha) {
   //console.log(fecha)
   $.ajax({
@@ -266,64 +258,64 @@ function fetchturns(fecha) {
     type: "POST",
     data: "&fecha=" + fecha,
     success: function (response) {
-      // console.log(response)
-      const turnos = JSON.parse(response);
-      if (turnos.length !== 0) {
-        let template = "";
-        let count = 1;
-        turnos[0].forEach((turnos) => {
-          var horaMorn = turnos.hora.slice(0, -3);
-          template += `
-                <tr user_id="${turnos.id}">  
+      if (response !== '') {
+        const turnos = JSON.parse(response);
+        if (turnos.length !== 0) {
+          let template = "";
+          let count = 1;
+          turnos[0].forEach((turnos) => {
+            var horaMorn = turnos.hora.slice(0, -3);
+            template += `
+                  <tr user_id="${turnos.id}">  
+                    <td>${count}</td>
+                    <td>${turnos.nombre}</td>
+                    <td>${turnos.apellido}</td>
+                    <td>${horaMorn}</td>
+                    <td>${turnos.fecha}</td>
+                    <td>${turnos.telefono}</td>      
+                    <td><button class="turn-delete btn btn btn-danger user-item" ;">
+                    Borrar
+                  </button></td>                                     
+                  </tr>                   
+                  `;
+            count++;
+          });
+          $("#users").html(template);
+
+          let template2 = "";
+          count = 1;
+          turnos[1].forEach((turnos2) => {
+            var horaTarde = turnos2.hora.slice(0, -3);
+            template2 += `
+                <tr user_id="${turnos2.id}">  
                   <td>${count}</td>
-                  <td>${turnos.nombre}</td>
-                  <td>${turnos.apellido}</td>
-                  <td>${horaMorn}</td>
-                  <td>${turnos.fecha}</td>
-                  <td>${turnos.telefono}</td>      
-                  <td><button class="turn-delete btn btn-danger" style="width: 100%;">
+                  <td>${turnos2.nombre}</td>
+                  <td>${turnos2.apellido}</td>
+                  <td>${horaTarde}</td>
+                  <td>${turnos2.fecha}</td>
+                  <td>${turnos2.telefono}</td>
+                  <td><button class="turn-delete btn btn btn-danger user-item">
                   Borrar
-                </button></td>                                     
+                </button></td>                                           
                 </tr>                   
                 `;
-          count++;
-        });
-        $("#users").html(template);
-
-        let template2 = "";
-        count = 1;
-        //console.log(turnos[1])
-        turnos[1].forEach((turnos2) => {
-          var horaTarde = turnos2.hora.slice(0, -3);
-          //console.log('AAA')
-          template2 += `
-              <tr user_id="${turnos2.id}">  
-                <td>${count}</td>
-                <td>${turnos2.nombre}</td>
-                <td>${turnos2.apellido}</td>
-                <td>${horaTarde}</td>
-                <td>${turnos2.fecha}</td>
-                <td>${turnos2.telefono}</td>
-                <td><button class="turn-delete btn btn-danger" style="width: 100%;">
-                Borrar
-              </button></td>                                           
-              </tr>                   
-              `;
-          count++;
-        });
-        $("#turnos_tarde").html(template2);
+            count++;
+          });
+          $("#turnos_tarde").html(template2);
+        }
       }
+
     },
   });
 }
 $('#fecha').change(function () {
   fetchturns(document.getElementById("fecha").value);
-
 });
 
 fetchturns();
 
 $(document).on("click", ".turn-delete", function () {
+
   Swal.fire({
     title: 'Estas seguro?',
     icon: 'warning',
@@ -331,14 +323,14 @@ $(document).on("click", ".turn-delete", function () {
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
+    cancelButtonText: 'No!',
     confirmButtonText: 'Si!'
   }).then((result) => {
     if (result.isConfirmed) {
       const element = $(this)[0].parentElement.parentElement;
-      const id = $(element).attr("user_id");
+      const turno_id = $(element).attr("user_id");     
 
-      $.post("../../db/cancelarTurno.php", { id }, function (response) {
-        console.log(response);
+      $.post("../../db/cancelarTurno.php", { turno_id }, function (response) {        
         fetchturns();
         $("#form-turn").trigger("reset");
         Swal.fire({
@@ -351,8 +343,7 @@ $(document).on("click", ".turn-delete", function () {
           timer: 1500
         })
       });
-      
+
     }
   })
-
 });

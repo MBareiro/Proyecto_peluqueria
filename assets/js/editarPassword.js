@@ -75,3 +75,4 @@ $('#formPass').submit((event) => {
       });
     }
   });
+

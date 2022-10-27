@@ -8,7 +8,7 @@ $(document).ready(function () {
             var tiempo = new Date(new Date().toDateString() + ' ' + horaBD);
             var hour = tiempo.getHours();
             var mins = tiempo.getMinutes();
-            if(mins == '0'){
+            if (mins == '0') {
                 mins += '0';
             }
             var morning_start = hour + ":" + mins;
@@ -34,8 +34,8 @@ $(document).ready(function () {
             if (element['active_afternoon'] == 1) {
                 $("input:checkbox[value='" + element['day'] + "'][name='active_afternoon']").prop("checked", true)
             }
-           
-            for (i = 0; i < morningStartSelects[element['day']].length; i++) {                
+
+            for (i = 0; i < morningStartSelects[element['day']].length; i++) {
                 if (morningStartSelects[element['day']][i].value == morning_start) {
                     morningStartSelects[element['day']][i].setAttribute("selected", true);
                 }
@@ -132,9 +132,9 @@ $('#formHorario').submit('submit', (event) => {
                 });
             } else {
                 Swal.fire({
-                icon: 'success',
-                title: 'Correcto!',
-                background: 'darkslategrey',
+                    icon: 'success',
+                    title: 'Correcto!',
+                    background: 'darkslategrey',
                 });
             }
         },
