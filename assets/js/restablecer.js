@@ -21,9 +21,7 @@ $('#restablecerPass').submit('submit', (event) => {
       data: {
         email: email,
       },
-      success: (data) => {
-        console.log(data)
-
+      success: () => {
         Swal.fire({
           icon: 'success',
           title: 'Verifica tu email para restablecer tu cuenta!',

@@ -5,7 +5,7 @@ $email = $_POST['email'];
 $token = $_POST['token'];
 $codigo = $_POST['codigo'];
 
-$res = $conexion->query("SELECT * from passwords where 
+$res = $conexion->query("SELECT * from passwords_reset where 
         email='$email' and token ='$token' and codigo = $codigo") or die($conexion->error);
 $correcto = false;
 
@@ -45,7 +45,7 @@ if (mysqli_num_rows($res) > 0) {
     <!-- Layout styles -->
     <link rel="stylesheet" href="../../assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="../../assets/images/favicon.png" />
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico" />
 </head>
 
 <body>
@@ -61,7 +61,8 @@ if (mysqli_num_rows($res) > 0) {
 
                                     <div class="mb-3">
                                         <label for="p1" class="form-label">Nuevo Password</label>
-                                        <input type="password" class="form-control" id="p1" name="p1">
+                                        <input type="password" class="form-control" id="password" name="password">
+                                        <p id="error_password" class="text-danger"></p>
                                     </div>
 
                                     <div class="mb-3">
@@ -97,6 +98,7 @@ if (mysqli_num_rows($res) > 0) {
     <script src="../../assets/js/settings.js"></script>
     <script src="../../assets/js/todolist.js"></script>
     <script src="../../assets/js/verificartoken.js"></script>
+    <script src="../../assets/js/validaciones.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- endinject -->
 </body>

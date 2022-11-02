@@ -33,7 +33,7 @@ if (!empty($result) && mysqli_num_rows($result) != 0) {
     
     try {
         //Selecciona todos los turnos de la ma;ana
-        $query = "SELECT t.id, t.fecha, t.hora, c.nombre, c.apellido, c.email, c.telefono FROM turnos t, clientes c Where t.peluquero_id = '$id' AND t.fecha = '$fecha' AND t.cliente_id = c.id AND  t.hora <= '$morning_end'";
+        $query = "SELECT t.id, t.fecha, t.hora, c.nombre, c.apellido, c.email, c.telefono FROM turnos t, clientes c Where t.peluquero_id = '$id' AND t.fecha = '$fecha' AND t.cliente_id = c.id AND  t.hora <= '$morning_end' Order by t.hora";
         $result1 = mysqli_query($conexion, $query);
         if (!$result1) {
             die('Query failed!' . mysqli_error($conexion));
@@ -57,7 +57,7 @@ if (!empty($result) && mysqli_num_rows($result) != 0) {
     
     try {
         //Selecciona todos los turnos de la tarde
-        $query = "SELECT t.id, t.fecha, t.hora, c.nombre, c.apellido, c.email, c.telefono FROM turnos t, clientes c Where t.peluquero_id = '$id' AND t.fecha = '$fecha' AND t.cliente_id = c.id AND t.hora >= '$afternoon_start'";
+        $query = "SELECT t.id, t.fecha, t.hora, c.nombre, c.apellido, c.email, c.telefono FROM turnos t, clientes c Where t.peluquero_id = '$id' AND t.fecha = '$fecha' AND t.cliente_id = c.id AND t.hora >= '$afternoon_start' Order by t.hora";
         $result2 = mysqli_query($conexion, $query);
         if (!$result2) {
             die('Query failed!' . mysqli_error($conexion));

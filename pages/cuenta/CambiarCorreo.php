@@ -45,13 +45,12 @@ if (!isset($_SESSION['id_user']) && !isset($_SESSION['id_rol'])) {
 
                 <form id="formCorreo" class="forms-sample">
                   <div class="form-group row">
-                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Email nuevo</label>
+                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Email</label>
                     <div class="col-sm-9">
                       <input type="email" id="email" class="form-control" id="exampleInputUsername2" placeholder="Email" value="<?php echo $_SESSION['email'] ?>">
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                  <button class="btn btn-dark">Cancel</button>
+                  <button type="submit" class="btn btn-primary mr-2">Guardar</button>
                 </form>
 
               </div>

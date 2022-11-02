@@ -260,56 +260,70 @@ function fetchturns(fecha) {
     success: function (response) {
       if (response !== '') {
         const turnos = JSON.parse(response);
-        if (turnos.length !== 0) {
+        if (turnos[0].length !== 0) {
           let template = "";
-          let count = 1;
           turnos[0].forEach((turnos) => {
             var horaMorn = turnos.hora.slice(0, -3);
             template += `
                   <tr user_id="${turnos.id}">  
-                    <td>${count}</td>
-                    <td>${turnos.nombre}</td>
-                    <td>${turnos.apellido}</td>
-                    <td>${horaMorn}</td>
-                    <td>${turnos.fecha}</td>
-                    <td>${turnos.telefono}</td>      
-                    <td><button class="turn-delete btn btn btn-danger user-item" ;">
-                    Borrar
+                    <td class='1'>${horaMorn}</td>
+                    <td class='2'>${turnos.nombre}</td>
+                    <td class='3'>${turnos.apellido}</td>                    
+                    <td class='4'>${turnos.email}</td>
+                    <td class='5'>${turnos.telefono}</td>   
+                    <td ><button class="turn-delete btn btn btn-danger user-item" ;">
+                    Cancelar
                   </button></td>                                     
                   </tr>                   
                   `;
-            count++;
           });
           $("#users").html(template);
-
+        } else {
+          let template3 = "";
+          template3 += `
+                <tr>  
+                  <td COLSPAN="6" >No hay turnos registrados</td>                                                       
+                </tr>                                 
+                `;
+          $("#users").html(template3);
+        }
+        if (turnos[1].length !== 0) {
           let template2 = "";
-          count = 1;
           turnos[1].forEach((turnos2) => {
             var horaTarde = turnos2.hora.slice(0, -3);
             template2 += `
                 <tr user_id="${turnos2.id}">  
-                  <td>${count}</td>
-                  <td>${turnos2.nombre}</td>
-                  <td>${turnos2.apellido}</td>
-                  <td>${horaTarde}</td>
-                  <td>${turnos2.fecha}</td>
-                  <td>${turnos2.telefono}</td>
+                  <td class='1'>${horaTarde}</td>       
+                  <td class='2'>${turnos2.nombre}</td>
+                  <td class='3'>${turnos2.apellido}</td>                           
+                  <td class='4'>${turnos2.email}</td>
+                  <td class='5'>${turnos2.telefono}</td>
                   <td><button class="turn-delete btn btn btn-danger user-item">
-                  Borrar
+                  Cancelar
                 </button></td>                                           
                 </tr>                   
                 `;
-            count++;
           });
           $("#turnos_tarde").html(template2);
-        }
-      }
 
+        } else {
+          let template3 = "";
+          template3 += `
+                <tr>  
+                  <td COLSPAN="6" >No hay turnos registrados</td>                                                       
+                </tr>                                 
+                `;
+          $("#turnos_tarde").html(template3);
+        }
+      }   
+      mostrar();
     },
   });
 }
 $('#fecha').change(function () {
+  mostrar();
   fetchturns(document.getElementById("fecha").value);
+  
 });
 
 fetchturns();
@@ -328,9 +342,9 @@ $(document).on("click", ".turn-delete", function () {
   }).then((result) => {
     if (result.isConfirmed) {
       const element = $(this)[0].parentElement.parentElement;
-      const turno_id = $(element).attr("user_id");     
+      const turno_id = $(element).attr("user_id");
 
-      $.post("../../db/cancelarTurno.php", { turno_id }, function (response) {        
+      $.post("../../db/cancelarTurno.php", { turno_id }, function (response) {
         fetchturns();
         $("#form-turn").trigger("reset");
         Swal.fire({
@@ -347,3 +361,21 @@ $(document).on("click", ".turn-delete", function () {
     }
   })
 });
+
+$('#ver').change(function () {
+  mostrar();
+});
+
+function mostrar(){
+  var ver = $("option:selected").map(function(){ return this.value }).get();
+  var ops = $("option").map(function(){ return this.value }).get();   
+  
+  ops.forEach(dato => {
+    const found = ver.find(element => element == dato);  
+    if(found == undefined){
+      $("." + dato + "").hide();
+    } else {
+      $("." + dato + "").show();
+    }
+  });
+}

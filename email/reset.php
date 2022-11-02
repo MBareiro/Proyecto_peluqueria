@@ -8,7 +8,7 @@ if (isset($_GET['email'])  && isset($_GET['token'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <!-- Required meta tags -->

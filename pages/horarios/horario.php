@@ -51,7 +51,7 @@ if (!isset($_SESSION['id_user']) && !isset($_SESSION['id_rol'])) {
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Gestion de Horario</h4>
+                                    <h4 class="card-title">Gestión de horario</h4>
                                     </p>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
@@ -60,7 +60,7 @@ if (!isset($_SESSION['id_user']) && !isset($_SESSION['id_rol'])) {
                                                 <tr>
                                                     <th>Dia</th>
                                                     <th>Activo</th>
-                                                    <th>Turno ma;ana</th>
+                                                    <th>Turno mañana</th>
                                                     <th>Activo</th>
                                                     <th>Turno tarde</th>
                                                 </tr>

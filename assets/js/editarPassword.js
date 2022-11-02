@@ -1,11 +1,12 @@
+$("#error_password").hide();
 // Evento Submit de Editar Contraseña
 $('#formPass').submit((event) => {
     event.preventDefault();
     const currentPassword = $.trim($('#currentPassword').val());
-    const newPassword = $.trim($('#newPassword').val());
+    const password = $.trim($('#password').val());
     const confirmPassword = $.trim($('#confirmPassword').val());
   
-    if (currentPassword === '' || newPassword === '' || confirmPassword === '') {
+    if (currentPassword === '' || password === '' || confirmPassword === '') {
       Swal.fire({
         icon: 'warning',
         title: 'Debes completar los 3 campos para continuar',
@@ -14,7 +15,7 @@ $('#formPass').submit((event) => {
         confirmButtonText: 'Ok',
       });
       return false;
-    } else if (newPassword !== confirmPassword) {
+    } else if (password !== confirmPassword) {
       Swal.fire({
         icon: 'warning',
         title: 'Las Contraseñas no coinciden',
@@ -23,14 +24,22 @@ $('#formPass').submit((event) => {
         confirmButtonText: 'Ok',
       });
       $('#confirmPassword').val('');
-    } else {
+    } else if(val_pass() != ''){
+      Swal.fire({
+        icon: 'warning',
+        title: 'Verifique su contraseña',
+        background: 'darkslategrey',
+        confirmButtonColor: '#ffa361',
+        confirmButtonText: 'Ok',
+      });
+    } else {      
       $.ajax({
         url: '../../db/cambiarContraseña.php',
         type: 'POST',
         datatype: 'json',
         data: {
           currentPassword: currentPassword,
-          newPassword: newPassword,
+          password: password,
           confirmPassword: confirmPassword,
         },
         success: (data) => {
@@ -57,7 +66,7 @@ $('#formPass').submit((event) => {
               confirmButtonText: 'Ok',
             });
             $('#currentPassword').val('');
-            $('#newPassword').val('');
+            $('#password').val('');
             $('#confirmPassword').val('');
           } else {
             Swal.fire({
@@ -68,7 +77,7 @@ $('#formPass').submit((event) => {
               confirmButtonText: 'Ok',
             });
             $('#currentPassword').val('');
-            $('#newPassword').val('');
+            $('#password').val('');
             $('#confirmPassword').val('');
           }
         },
@@ -76,3 +85,24 @@ $('#formPass').submit((event) => {
     }
   });
 
+
+  function val_pass(){    
+    const formato = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    if (($("#password").val()).length < 8) {
+      error_password = "El minimo de carácteres es 8*";
+    } else if (($("#password").val()).length > 15) {
+      error_password = "El maximo de carácteres es 15*";
+    } else if (!$("#password").val().match(/[A-Z]/)) {
+      error_password = "Debe tener al menos una letra mayúscula*";
+    } else if (!$("#password").val().match(/[0-9]/)) {
+      error_password = "Debe tener al menos un número*";
+    } else if (formato.test($("#password").val())) {
+      error_password = "Solo se aceptan numeros y letras*";
+    } else{
+      error_password = "";
+    }
+    $("#error_password").text(error_password);  
+    return error_password;
+  }
+    
+  

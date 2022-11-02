@@ -4,7 +4,7 @@
 $to  = $email; // atención a la coma
 //$para .= 'wez@example.com';
 // título
-$subject = 'Recordatorio de turno';
+$subject = 'Cancelación';
 // mensaje
 $body = '
 <!DOCTYPE html>
@@ -153,12 +153,7 @@ $body = '
 			font-family: sans-serif;" class="header">
                         </td>
                     </tr>
-
-                    <!-- SUBHEADER -->
-                    <!-- Set text color and font family ("sans-serif" or "Georgia, serif") -->
                     
-
-
                     <tr>
                         <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-bottom: 3px; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%;
 			padding-top: 5px;
@@ -175,21 +170,7 @@ $body = '
 			color: #000000;
 			font-family: sans-serif;" class="paragraph">
                             
-            Lo sentimos, por razon de fuerza mayor su turno en la peluqueria no se podra llevar a cabo. Por favor, disculpe las molestias.
-                        </td>
-                    </tr>
-
-                    <!-- BUTTON -->
-                    <!-- Set button background color at TD, link/text color at A and TD, font family ("sans-serif" or "Georgia, serif") at TD. For verification codes add "letter-spacing: 5px;". Link format: http://domain.com/?utm_source={{Campaign-Source}}&utm_medium=email&utm_content={{Button-Name}}&utm_campaign={{Campaign-Name}} -->
-                    <tr>
-                        <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%;
-			padding-top: 25px;
-			padding-bottom: 5px;" class="button">
-                                <table border="0" cellpadding="0" cellspacing="0" align="center" style="max-width: 240px; min-width: 120px; border-collapse: collapse; border-spacing: 0; padding: 0;">
-                                
-                                
-                                </table>
-                            </a>
+            Lo sentimos, por razon de fuerza mayor su turno el dia ' .$fecha.' a las ' .substr($hora, 0, -3).' en la peluqueria no se podra llevar a cabo. Por favor, disculpe las molestias.
                         </td>
                     </tr>
 
@@ -200,70 +181,13 @@ $body = '
 			padding-top: 25px;" class="line">
                             <hr color="#E0E0E0" align="center" width="100%" size="1" noshade style="margin: 0; padding: 0;" />
                         </td>
-                    </tr>
-
-                    <!-- LIST -->
-                    <tr>
-                        <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%;" class="list-item">
-                            <table align="center" border="0" cellspacing="0" cellpadding="0" style="width: inherit; margin: 0; padding: 0; border-collapse: collapse; border-spacing: 0;">
-
-                                <!-- LIST ITEM -->
-                                <tr>
-
-                                    <!-- LIST ITEM TEXT -->
-                                    <!-- Set text color and font family ("sans-serif" or "Georgia, serif"). Duplicate all text styles in links, including line-height -->
-                                    
-
-                                </tr>
-
-                                <!-- LIST ITEM -->
-                                <tr>
-
-
-
-                            </table>
-                        </td>
-                    </tr>
-                
-                    <!-- PARAGRAPH -->
-                    <!-- Set text color and font family ("sans-serif" or "Georgia, serif"). Duplicate all text styles in links, including line-height -->
-
-                    <!-- End of WRAPPER -->
+                    </tr>                    
                 </table>
 
                 <!-- WRAPPER -->
                 <!-- Set wrapper width (twice) -->
                 <table border="0" cellpadding="0" cellspacing="0" align="center" width="560" style="border-collapse: collapse; border-spacing: 0; padding: 0; width: inherit;
 	max-width: 560px;" class="wrapper">
-
-                    <!-- SOCIAL NETWORKS -->
-                    <!-- Image text color should be opposite to background color. Set your url, image src, alt and title. Alt text should fit the image size. Real image size should be x2 -->
-                    <tr>
-                        <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%;
-			padding-top: 25px;" class="social-icons">
-                            <table width="256" border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse; border-spacing: 0; padding: 0;">
-                                <tr>
-
-                                    <!-- ICON 1 -->
-                                    <td align="center" valign="middle" style="margin: 0; padding: 0; padding-left: 10px; padding-right: 10px; border-collapse: collapse; border-spacing: 0;"><a target="_blank" href="https://raw.githubusercontent.com/konsav/email-templates/" style="text-decoration: none;"><img border="0" vspace="0" hspace="0" style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: inline-block;
-					color: #000000;" alt="F" title="Facebook" width="44" height="44" src="https://raw.githubusercontent.com/konsav/email-templates/master/images/social-icons/facebook.png"></a></td>
-
-                                    <!-- ICON 2 -->
-                                    <td align="center" valign="middle" style="margin: 0; padding: 0; padding-left: 10px; padding-right: 10px; border-collapse: collapse; border-spacing: 0;"><a target="_blank" href="https://raw.githubusercontent.com/konsav/email-templates/" style="text-decoration: none;"><img border="0" vspace="0" hspace="0" style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: inline-block;
-					color: #000000;" alt="T" title="Twitter" width="44" height="44" src="https://raw.githubusercontent.com/konsav/email-templates/master/images/social-icons/twitter.png"></a></td>
-
-                                    <!-- ICON 3 -->
-                                    <td align="center" valign="middle" style="margin: 0; padding: 0; padding-left: 10px; padding-right: 10px; border-collapse: collapse; border-spacing: 0;"><a target="_blank" href="https://raw.githubusercontent.com/konsav/email-templates/" style="text-decoration: none;"><img border="0" vspace="0" hspace="0" style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: inline-block;
-					color: #000000;" alt="G" title="Google Plus" width="44" height="44" src="https://raw.githubusercontent.com/konsav/email-templates/master/images/social-icons/googleplus.png"></a></td>
-
-                                    <!-- ICON 4 -->
-                                    <td align="center" valign="middle" style="margin: 0; padding: 0; padding-left: 10px; padding-right: 10px; border-collapse: collapse; border-spacing: 0;"><a target="_blank" href="https://raw.githubusercontent.com/konsav/email-templates/" style="text-decoration: none;"><img border="0" vspace="0" hspace="0" style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: inline-block;
-					color: #000000;" alt="I" title="Instagram" width="44" height="44" src="https://raw.githubusercontent.com/konsav/email-templates/master/images/social-icons/instagram.png"></a></td>
-
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
 
                     <!-- FOOTER -->
                     <!-- Set text color and font family ("sans-serif" or "Georgia, serif"). Duplicate all text styles in links, including line-height -->
@@ -273,15 +197,7 @@ $body = '
 			padding-bottom: 20px;
 			color: #999999;
 			font-family: sans-serif;" class="footer">
-
-
-                            No responda a este mensaje. Este correo electrónico ha sido enviado a través de un sistema automatizado que no permite dar respuesta a las preguntas enviadas a esta dirección. Para ponerse en contacto con nosotros, vaya al sitio web de km3 y haga clic en
-                            <a href="https://kilometroscubicos.com/" target="_blank" style="text-decoration: underline; color: #999999; font-family: sans-serif; font-size: 13px; font-weight: 400; line-height: 150%;">contacto</a>
-
-                            <!-- ANALYTICS -->
-                            <!-- https://www.google-analytics.com/collect?v=1&tid={{UA-Tracking-ID}}&cid={{Client-ID}}&t=event&ec=email&ea=open&cs={{Campaign-Source}}&cm=email&cn={{Campaign-Name}} -->
-
-
+                            No responda a este mensaje. Este correo electrónico ha sido enviado a través de un sistema automatizado que no permite dar respuesta a las preguntas enviadas a esta dirección.
                         </td>
                     </tr>
 

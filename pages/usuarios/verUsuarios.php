@@ -115,18 +115,18 @@ if (isset($_SESSION['id_user']) && isset($_SESSION['id_rol'])) {
                                         <div class="form-group row">
                                             <label for="rol" class="col-sm-3 col-form-label">Rol</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control" id="rol">
+                                                <select class="form-control" id="rolEdit">
                                                     <option></option>
                                                     <option value="1">Administrador</option>
                                                     <option value="2">Peluquero</option>
                                                 </select>
                                             </div>
-                                        </div>
-                                        <button type="submit" id="cerrarModal" class="btn btn-primary mr-2">Guardar</button>
+                                        </div>                                        
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" id="cerrarModal" class="btn btn-primary mr-2">Guardar</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                 </div>
                             </div>
 
@@ -156,6 +156,7 @@ if (isset($_SESSION['id_user']) && isset($_SESSION['id_rol'])) {
 
     <!-- Custom js for this page -->
     <script src="../../assets/js/verUsuarios.js"></script>
+    <script src="../../assets/js/validaciones.js"></script>
     <!-- End custom js for this page -->
 </body>
 

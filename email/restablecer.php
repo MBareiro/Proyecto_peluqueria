@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <!-- Required meta tags -->
@@ -17,7 +17,7 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="../assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="../assets/images/favicon.png" />
+    <link rel="shortcut icon" href="../assets/images/favicon.ico" />
 </head>
 
 <body>
@@ -27,7 +27,7 @@
                 <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
                     <div class="card col-lg-4 mx-auto">
                         <div class="card-body px-5 py-5">
-                            <h3 class="card-title text-left mb-3">Restablecer Password</h3>
+                            <h3 class="card-title text-left mb-3">Restablecer contraseña</h3>
                             <form id="restablecerPass" action="./php/restablecer.php" method="POST">
                                 <div class="mb-3">
                                     <label for="c" class="form-label">Email</label>

@@ -47,17 +47,18 @@ if (!isset($_SESSION['id_user']) && !isset($_SESSION['id_rol'])) {
                   <div class="form-group row">
                     <label for="currentPassword" class="col-sm-5 col-form-label">Contraseña actual</label>
                     <div class="col-sm-7">
-                      <input type="password" class="form-control" id="currentPassword" placeholder="">
+                      <input type="password" class="form-control" id="currentPassword" placeholder="">                      
                     </div>
                   </div>
 
                   <div class="form-group row">
-                    <label for="newPassword" class="col-sm-5 col-form-label">Contraseña nueva</label>
+                    <label for="password" class="col-sm-5 col-form-label">Contraseña nueva</label>
                     <div class="col-sm-7">
-                      <input type="password" class="form-control" id="newPassword" placeholder="">
-                    </div>
+                      <input type="password" class="form-control" id="password" placeholder="">    
+                      <p id="error_password" class="text-danger"></p>                 
+                    </div>                    
                   </div>
-
+                  
                   <div class="form-group row">
                     <label for="confirmPassword" class="col-sm-5 col-form-label">Confirmar contraseña</label>
                     <div class="col-sm-7">
@@ -66,7 +67,6 @@ if (!isset($_SESSION['id_user']) && !isset($_SESSION['id_rol'])) {
                   </div>
 
                   <button type="submit" class="btn btn-primary mr-2">Actualizar</button>
-                  <button class="btn btn-dark">Cancelar</button>
                 </form>
               </div>
             </div>
@@ -95,6 +95,7 @@ if (!isset($_SESSION['id_user']) && !isset($_SESSION['id_rol'])) {
 
   <!-- Custom js for this page -->
   <script src="../../assets/js/editarPassword.js"></script>
+  <script src="../../assets/js/validaciones.js"></script>
   <!-- End custom js for this page -->
 
 </body>

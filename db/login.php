@@ -1,4 +1,6 @@
 <?php
+$sessionTime = 365 * 24 * 60 * 60; // 1 año de duración
+session_set_cookie_params($sessionTime);
 session_start();
 
 if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
@@ -20,7 +22,6 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
     if (!empty($resultado) && mysqli_num_rows($resultado) != 0) {
         while ($row = mysqli_fetch_assoc($resultado)) {
             if (password_verify($password, $row['password'])) {
-                //print($row['id']);
                 $verificar = true;
                 $_SESSION['id_user'] = $row['id'];
                 $_SESSION['id_rol'] = $row['rol'];

@@ -41,17 +41,14 @@ function fetchExps() {
                   <td>${users.apellido}</td>
                   <td>${users.email}</td>
                   <td>${users.rol}</td>
-                  <td>                    
-                    <!-- Button trigger modal -->
-                    <button type="button" id="user-item" class="btn btn btn-warning user-item" data-toggle="modal" data-target="#myModal">
-                        Editar
-                    </button>
-                  </td>    
-                  <td>
-                    <button class="user-delete btn btn btn-danger user-item">
-                      Borrar
-                    </button>
-                  </td>                                
+                  <td>    
+                  <div class="dropdown">
+                        <button class="btn btn-outline-warning dropdown-toggle" type="button" id="dropdownMenuOutlineButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Acciones </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton4">
+                          <a class="dropdown-item user-item " id="user-item" data-toggle="modal" data-target="#myModal" href="#">Editar</a>
+                          <a class="dropdown-item user-delete" href="#">Borrar</a>
+                        </div>
+                      </div>            
                 </tr>                   
                 `;
       });
@@ -73,7 +70,7 @@ $(document).on("click", ".user-delete", function () {
     confirmButtonText: 'Si!'
   }).then((result) => {
     if (result.isConfirmed) {
-      const element = $(this)[0].parentElement.parentElement;
+      const element = $(this)[0].parentElement.parentElement.parentElement.parentElement;
       const id = $(element).attr("user_id");
       //console.log(element)
       //console.log(id)
@@ -91,24 +88,28 @@ $(document).on("click", ".user-delete", function () {
 
 //-----------------------------------------------------------------------------------------------Editar
 $(document).on("click", ".user-item", function () {
-  let element = $(this)[0].parentElement.parentElement;
+  let element = $(this)[0].parentElement.parentElement.parentElement.parentElement;
   let id = $(element).attr("user_id");
 
   $.post("../../db/user-single.php", { id }, function (response) {
     const user = JSON.parse(response);
-    //console.log(user.username)
     $("#user_id").val(user.id);
-    $("#username").val(user.username);
     $("#nombre").val(user.nombre);
     $("#apellido").val(user.apellido);
     $("#email").val(user.email);
-    $("#rol option[value=" + user.rol + "]").attr("selected", true);
+    $("#rolEdit option[value=" + user.rol + "]").attr("selected", true);
   });
 });
 
 $(document).on("click", "#cerrarModal", function () {
+  Swal.fire({
+    icon: 'success',
+    title: 'Correcto!',
+    background: 'darkslategrey',
+  });
   fetchExps();
 });
 
-fetchExps();
-
+$(document).ready(function () {
+  fetchExps();
+})

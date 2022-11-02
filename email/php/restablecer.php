@@ -8,7 +8,7 @@ $result = $conexion->query("SELECT email FROM users WHERE email= '$email'") or d
 if (!empty($result) && mysqli_num_rows($result) != 0) {
     include "mail_reset.php";    
     if ($enviado) {
-        $conexion->query("INSERT into passwords(email, token, codigo) 
+        $conexion->query("INSERT into passwords_reset(email, token, codigo) 
              values('$email','$token','$codigo') ") or die($conexion->error);
     }
 }

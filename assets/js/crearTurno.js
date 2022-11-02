@@ -56,7 +56,7 @@ $(document).ready(function () {
         ) {
             Swal.fire({
                 icon: 'warning',
-                title: 'Debe completar todos los campos para crear un turno',
+                title: 'Debe completar todos los campos*',
                 background: 'darkslategrey',
                 confirmButtonColor: '#ffa361',
                 confirmButtonText: 'Ok',

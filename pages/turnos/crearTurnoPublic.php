@@ -37,49 +37,49 @@ $max = $Object->modify('+14 day')->format("Y-m-d");
                             <form id="crear_turno" action="../../db/turnos" method="POST" class="forms-sample">
 
                                 <div class="form-group row">
-                                    <label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
+                                    <label for="nombre" class="col-sm-3 col-form-label">Nombre *</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+                                        <input type="text" class="form-control" id="nombre" placeholder="">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="apellido" class="col-sm-3 col-form-label">Apellido</label>
+                                    <label for="apellido" class="col-sm-3 col-form-label">Apellido *</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="apellido" placeholder="Apellido">
+                                        <input type="text" class="form-control" id="apellido" placeholder="">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="email" class="col-sm-3 col-form-label">Email</label>
                                     <div class="col-sm-9">
-                                        <input type="email" class="form-control" id="email" placeholder="Email (Opcional)">
+                                        <input type="email" class="form-control" id="email" placeholder="(Recomendado)">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="telefono" class="col-sm-3 col-form-label">Telefono</label>
+                                    <label for="telefono" class="col-sm-3 col-form-label">Telefono </label>
                                     <div class="col-sm-9">
-                                        <input type="tel" class="form-control" id="telefono" placeholder="Telefono">
+                                        <input type="tel" class="form-control" id="telefono" placeholder="">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="peluqueros" class="col-sm-3 col-form-label">Peluquero</label>
+                                    <label for="peluqueros" class="col-sm-3 col-form-label">Peluquero *</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" id="peluqueros"></select>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="fecha" class="col-sm-3 col-form-label">Fecha</label>
+                                    <label for="fecha" class="col-sm-3 col-form-label">Fecha *</label>
                                     <div class="col-sm-9">
                                         <input type="date" id="fecha" min="<?php echo $DateAndTime ?>" max="<?php echo $max  ?>">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="disponibilidad" class="col-sm-4 col-form-label">Disponibilidad</label>
+                                    <label for="disponibilidad" class="col-sm-4 col-form-label">Disponibilidad *</label>
                                     <div class="col-sm-4">
                                         <div class="form-check">
                                             <label class="form-check-label">
@@ -110,7 +110,7 @@ $max = $Object->modify('+14 day')->format("Y-m-d");
 
 
                                 <button type="submit" class="btn btn-primary mr-2">Crear</button>
-                                <button type="reset" class="btn btn-dark">Cancelar</button>
+                                <button type="reset" class="btn btn-dark">Limpiar</button>
                             </form>
                         </div>
                     </div>
