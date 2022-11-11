@@ -77,7 +77,6 @@ $(document).ready(function () {
                     horaTarde: horaTarde,
                 },
                 success: (data) => {
-                    console.log(data)
                     Swal.fire({
                         icon: 'success',
                         title: '¡Turno Creado Correctamente!',

@@ -18,9 +18,16 @@ console.log($("#rolEdit").val())
     // Resetea el formulario despues de presionar el boton guardar
     $("#form-user").trigger("reset");
     console.log(response);
+    if(JSON.parse(response) == true){
+      Swal.fire({
+        icon: 'success',
+        title: '¡Guardado exitoso!',
+        background: 'darkslategrey',
+        confirmButtonColor: '#ffa361',
+        confirmButtonText: 'Ok',
+    });
+    }
     fetchExps();
-
-    //document.getElementById('form-exp').reset();
   });
 });
 
@@ -58,7 +65,6 @@ function fetchExps() {
 }
 
 $(document).on("click", ".user-delete", function () {
-
   Swal.fire({
     title: 'Estas seguro?',
     icon: 'warning',
@@ -72,18 +78,12 @@ $(document).on("click", ".user-delete", function () {
     if (result.isConfirmed) {
       const element = $(this)[0].parentElement.parentElement.parentElement.parentElement;
       const id = $(element).attr("user_id");
-      //console.log(element)
-      //console.log(id)
-
       $.post("../../db/user-delete.php", { id }, function (response) {
         fetchExps();
         $("#form-user").trigger("reset");
       });
-
     }
   })
-
-
 });
 
 //-----------------------------------------------------------------------------------------------Editar

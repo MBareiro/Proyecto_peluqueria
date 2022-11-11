@@ -26,7 +26,6 @@ $('#formLogin').submit('submit', (event) => {
           password: password,
         },
         success: (data) => {
-          console.log(data)
           if (data[0] === '0') {
             Swal.fire({
               icon: 'error',

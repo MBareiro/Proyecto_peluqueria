@@ -15,7 +15,9 @@ $result = mysqli_query($conexion, $query);
 
 if (!$result) {
     die('Query failed!');
+} else {
+    print json_encode(true);
 }
-echo "Task Update Successfully";  
+
 mysqli_close($conexion);
 ?>
