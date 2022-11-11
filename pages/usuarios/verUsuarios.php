@@ -121,13 +121,14 @@ if (isset($_SESSION['id_user']) && isset($_SESSION['id_rol'])) {
                                                     <option value="2">Peluquero</option>
                                                 </select>
                                             </div>
-                                        </div>                                        
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" id="cerrarModal" class="btn btn-primary mr-2">Guardar</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        </div>
                                     </form>
                                 </div>
-                                <div class="modal-footer">
-                                <button type="submit" id="cerrarModal" class="btn btn-primary mr-2">Guardar</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                </div>
+
                             </div>
 
                         </div>

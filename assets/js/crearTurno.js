@@ -1,31 +1,29 @@
 $(document).ready(function () {
 
-    $("#nombre").bind('keypress', function(event) {
+
+    $("#nombre").bind('keypress', function (event) {
         var regex = new RegExp("^[a-zA-Z ]+$");
         var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-        if (!regex.test(key) ||  $("#nombre").val().length > 50) {
-          event.preventDefault();
-          return false;
+        if (!regex.test(key) || $("#nombre").val().length > 50) {
+            event.preventDefault();
+            return false;
         }
-      });
-
-      $("#apellido").bind('keypress', function(event) {
+    });
+    $("#apellido").bind('keypress', function (event) {
         var regex = new RegExp("^[a-zA-Z ]+$");
         var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-        if (!regex.test(key) ||  $("#apellido").val().length > 50) {
-          event.preventDefault();
-          return false;
+        if (!regex.test(key) || $("#apellido").val().length > 50) {
+            event.preventDefault();
+            return false;
         }
-      });
-   
-
-      $("#telefono").bind('keypress', function(event) {
+    });
+    $("#telefono").bind('keypress', function (event) {
         if ($("#telefono").val().length > 25) {
-          event.preventDefault();
-          return false;
+            event.preventDefault();
+            return false;
         }
-      });
-      
+    });
+
 
     $('#crear_turno').submit((event) => {
         event.preventDefault();
@@ -35,8 +33,9 @@ $(document).ready(function () {
         const telefono = $.trim($('#telefono').val());
         const peluqueros = parseInt($.trim($('#peluqueros').val()));
         const fecha = $.trim($('#fecha').val());
-        const horaMañana = $.trim($('#horaMañana').val());
-        const horaTarde = $.trim($('#horaTarde').val());
+        const horaMañana = $.trim($('input[name=horaMañana]:checked', '#crear_turno').val());
+        const horaTarde = $.trim($('input[name=horaTarde]:checked', '#crear_turno').val());
+        console.log(horaTarde)
         if (
             nombre.length === 0 ||
             typeof nombre === 'undefined' ||
@@ -78,6 +77,7 @@ $(document).ready(function () {
                     horaTarde: horaTarde,
                 },
                 success: (data) => {
+                    console.log(data)
                     Swal.fire({
                         icon: 'success',
                         title: '¡Turno Creado Correctamente!',
@@ -86,7 +86,6 @@ $(document).ready(function () {
                         confirmButtonText: 'Ok',
                     });
                     $("#crear_turno").trigger("reset");
-                    document.getElementById("fecha").value = "";
                     $("#hoursMorning").empty();
                     $("#hoursAfternoon").empty();
                     $('#turnoMañana').prop("checked", false);
@@ -123,34 +122,33 @@ $(document).ready(function () {
             var peluquero_id = $('#peluqueros').val();
             $.post("../../db/disponibilidadTurno.php", { fecha, peluquero_id }, function (response) {
                 //console.log(response)
-                var datos = JSON.parse(response);                
+                var datos = JSON.parse(response);
                 var hoursMorning = document.getElementById("hoursMorning");
-                if(datos.length != 0){
+                if (datos.length != 0) {
                     if (datos[0].length !== 0) {
                         var arr = Object.values(datos[0]);
                         arr.forEach(element => {
                             var horaMorn = element.slice(0, -3);
                             hoursMorning.innerHTML += `
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="horaMañana" value=" ${element}">
+                                <input class="form-check-input" type="radio" name="horaMañana" value="${element}">
                                 <label class="form-check-label" for="flexRadioDefault1">
                                 ${horaMorn}
                                 </label>
                             </div>`;
                         });
-                    } else {                                         
+                    } else {
                         hoursMorning.innerHTML += `
                             <div class="form-check">
                                 No hay turnos disponibles
                             </div>`;
                     }
-                } else {                                    
+                } else {
                     hoursMorning.innerHTML += `
                         <div class="form-check">
                             No hay turnos disponibles
                         </div>`;
                 }
-               
             });
         } else {
             Swal.fire({
@@ -160,38 +158,33 @@ $(document).ready(function () {
                 confirmButtonColor: '#ffa361',
                 confirmButtonText: 'Ok',
             });
-
             $('#turnoMañana').prop("checked", false);
         }
-
-
     });
 
     $('#turnoTarde').change(function () {
         document.getElementById('hoursMorning').innerHTML = "";
         var fecha = $('#fecha').val();
-
         if (fecha != '') {
             var peluquero_id = $('#peluqueros').val();
-
             $.post("../../db/disponibilidadTurno.php", { fecha, peluquero_id }, function (response) {
-                
-                var datos = JSON.parse(response);              
+
+                var datos = JSON.parse(response);
                 var hoursAfternoon = document.getElementById("hoursAfternoon");
-                if(datos.length != 0){
+                if (datos.length != 0) {
                     if (datos[1].length !== 0) {
                         var arr = Object.values(datos[1]);
                         arr.forEach(element => {
                             var horaTarde = element.slice(0, -3);
                             hoursAfternoon.innerHTML += `
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="horaTarde" value=" ${element}">
+                                <input class="form-check-input" type="radio" name="horaTarde" value="${element}">
                                 <label class="form-check-label" for="flexRadioDefault1">
                                 ${horaTarde}
                                 </label>
                             </div>`;
                         });
-                    } else {                    
+                    } else {
                         hoursAfternoon.innerHTML += `
                             <div class="form-check">
                                 No hay turnos disponibles
@@ -203,10 +196,7 @@ $(document).ready(function () {
                                 No hay turnos disponibles
                             </div>`;
                 }
-                
             });
-
-
         } else {
             Swal.fire({
                 icon: 'error',
@@ -220,7 +210,7 @@ $(document).ready(function () {
     });
 
     $('#peluqueros').change(function () {
-        document.getElementById("fecha").value = "";
+        //document.getElementById("fecha").value = "";
         $("#hoursMorning").empty();
         $("#hoursAfternoon").empty();
         $('#turnoMañana').prop("checked", false);
@@ -229,7 +219,7 @@ $(document).ready(function () {
 
     $('#fecha').change(function () {
         var peluquero = document.getElementById("peluqueros");
-        if(peluquero.value == ""){
+        if (peluquero.value == "") {
             Swal.fire({
                 icon: 'error',
                 title: 'Seleccione su peluquero',
@@ -245,6 +235,3 @@ $(document).ready(function () {
         $('#turnoTarde').prop("checked", false);
     });
 });
-
-
-

@@ -1,258 +1,40 @@
-(function ($) {
-  'use strict';
-  $.fn.andSelf = function () {
-    return this.addBack.apply(this, arguments);
-  }
-  $(function () {
-    if ($("#currentBalanceCircle").length) {
-      var bar = new ProgressBar.Circle(currentBalanceCircle, {
-        color: '#000',
-        // This has to be the same size as the maximum width to
-        // prevent clipping
-        strokeWidth: 12,
-        trailWidth: 12,
-        trailColor: '#0d0d0d',
-        easing: 'easeInOut',
-        duration: 1400,
-        text: {
-          autoStyleContainer: false
-        },
-        from: { color: '#d53f3a', width: 12 },
-        to: { color: '#d53f3a', width: 12 },
-        // Set default step function for all animate calls
-        step: function (state, circle) {
-          circle.path.setAttribute('stroke', state.color);
-          circle.path.setAttribute('stroke-width', state.width);
 
-          var value = Math.round(circle.value() * 100);
-          circle.setText('');
+$(document).ready(function () {
+  fetchHorario(document.getElementById("fecha").value);
+  mostrar();
 
-        }
-      });
+});
 
-      bar.text.style.fontSize = '1.5rem';
-      bar.animate(0.4);  // Number from 0.0 to 1.0
-    }
-    if ($('#audience-map').length) {
-      $('#audience-map').vectorMap({
-        map: 'world_mill_en',
-        backgroundColor: 'transparent',
-        panOnDrag: true,
-        focusOn: {
-          x: 0.5,
-          y: 0.5,
-          scale: 1,
-          animate: true
-        },
-        series: {
-          regions: [{
-            scale: ['#3d3c3c', '#f2f2f2'],
-            normalizeFunction: 'polynomial',
-            values: {
-
-              "BZ": 75.00,
-              "US": 56.25,
-              "AU": 15.45,
-              "GB": 25.00,
-              "RO": 10.25,
-              "GE": 33.25
-            }
-          }]
-        }
-      });
-    }
-    if ($("#transaction-history").length) {
-      var areaData = {
-        labels: ["Paypal", "Stripe", "Cash"],
-        datasets: [{
-          data: [55, 25, 20],
-          backgroundColor: [
-            "#111111", "#00d25b", "#ffab00"
-          ]
-        }
-        ]
-      };
-      var areaOptions = {
-        responsive: true,
-        maintainAspectRatio: true,
-        segmentShowStroke: false,
-        cutoutPercentage: 70,
-        elements: {
-          arc: {
-            borderWidth: 0
-          }
-        },
-        legend: {
-          display: false
-        },
-        tooltips: {
-          enabled: true
-        }
-      }
-      var transactionhistoryChartPlugins = {
-        beforeDraw: function (chart) {
-          var width = chart.chart.width,
-            height = chart.chart.height,
-            ctx = chart.chart.ctx;
-
-          ctx.restore();
-          var fontSize = 1;
-          ctx.font = fontSize + "rem sans-serif";
-          ctx.textAlign = 'left';
-          ctx.textBaseline = "middle";
-          ctx.fillStyle = "#ffffff";
-
-          var text = "$1200",
-            textX = Math.round((width - ctx.measureText(text).width) / 2),
-            textY = height / 2.4;
-
-          ctx.fillText(text, textX, textY);
-
-          ctx.restore();
-          var fontSize = 0.75;
-          ctx.font = fontSize + "rem sans-serif";
-          ctx.textAlign = 'left';
-          ctx.textBaseline = "middle";
-          ctx.fillStyle = "#6c7293";
-
-          var texts = "Total",
-            textsX = Math.round((width - ctx.measureText(text).width) / 1.93),
-            textsY = height / 1.7;
-
-          ctx.fillText(texts, textsX, textsY);
-          ctx.save();
-        }
-      }
-      var transactionhistoryChartCanvas = $("#transaction-history").get(0).getContext("2d");
-      var transactionhistoryChart = new Chart(transactionhistoryChartCanvas, {
-        type: 'doughnut',
-        data: areaData,
-        options: areaOptions,
-        plugins: transactionhistoryChartPlugins
-      });
-    }
-    if ($("#transaction-history-arabic").length) {
-      var areaData = {
-        labels: ["Paypal", "Stripe", "Cash"],
-        datasets: [{
-          data: [55, 25, 20],
-          backgroundColor: [
-            "#111111", "#00d25b", "#ffab00"
-          ]
-        }
-        ]
-      };
-      var areaOptions = {
-        responsive: true,
-        maintainAspectRatio: true,
-        segmentShowStroke: false,
-        cutoutPercentage: 70,
-        elements: {
-          arc: {
-            borderWidth: 0
-          }
-        },
-        legend: {
-          display: false
-        },
-        tooltips: {
-          enabled: true
-        }
-      }
-      var transactionhistoryChartPlugins = {
-        beforeDraw: function (chart) {
-          var width = chart.chart.width,
-            height = chart.chart.height,
-            ctx = chart.chart.ctx;
-
-          ctx.restore();
-          var fontSize = 1;
-          ctx.font = fontSize + "rem sans-serif";
-          ctx.textAlign = 'left';
-          ctx.textBaseline = "middle";
-          ctx.fillStyle = "#ffffff";
-
-          var text = "$1200",
-            textX = Math.round((width - ctx.measureText(text).width) / 2),
-            textY = height / 2.4;
-
-          ctx.fillText(text, textX, textY);
-
-          ctx.restore();
-          var fontSize = 0.75;
-          ctx.font = fontSize + "rem sans-serif";
-          ctx.textAlign = 'left';
-          ctx.textBaseline = "middle";
-          ctx.fillStyle = "#6c7293";
-
-          var texts = "مجموع",
-            textsX = Math.round((width - ctx.measureText(text).width) / 1.93),
-            textsY = height / 1.7;
-
-          ctx.fillText(texts, textsX, textsY);
-          ctx.save();
-        }
-      }
-      var transactionhistoryChartCanvas = $("#transaction-history-arabic").get(0).getContext("2d");
-      var transactionhistoryChart = new Chart(transactionhistoryChartCanvas, {
-        type: 'doughnut',
-        data: areaData,
-        options: areaOptions,
-        plugins: transactionhistoryChartPlugins
-      });
-    }
-    if ($('#owl-carousel-basic').length) {
-      $('#owl-carousel-basic').owlCarousel({
-        loop: true,
-        margin: 10,
-        dots: false,
-        nav: true,
-        autoplay: true,
-        autoplayTimeout: 4500,
-        navText: ["<i class='mdi mdi-chevron-left'></i>", "<i class='mdi mdi-chevron-right'></i>"],
-        responsive: {
-          0: {
-            items: 1
-          },
-          600: {
-            items: 1
-          },
-          1000: {
-            items: 1
-          }
-        }
-      });
-    }
-    var isrtl = $("body").hasClass("rtl");
-    if ($('#owl-carousel-rtl').length) {
-      $('#owl-carousel-rtl').owlCarousel({
-        loop: true,
-        margin: 10,
-        dots: false,
-        nav: true,
-        rtl: isrtl,
-        autoplay: true,
-        autoplayTimeout: 4500,
-        navText: ["<i class='mdi mdi-chevron-right'></i>", "<i class='mdi mdi-chevron-left'></i>"],
-        responsive: {
-          0: {
-            items: 1
-          },
-          600: {
-            items: 1
-          },
-          1000: {
-            items: 1
-          }
-        }
-      });
-    }
+$(document).on("click", "#cerrarModal", function () {
+  // e.preventDefault();
+  const postData = {
+    //Toma los valores cargados en los inputs
+    peluqueros: $("#id_user").val(),
+    nombre: $("#nombre").val(),
+    apellido: $("#apellido").val(),
+    fecha: $("#fecha").val(),
+    hora: $("#hora").val(),
+  };
+  //comprueba si se esta creando un nuevo reg o actualizando
+  const url = "../../db/turno_crear.php";
+  $.post(url, postData, function (response) {
+    // Resetea el formulario despues de presionar el boton guardar
+    console.log(response)
+    
+    $('#myModal').modal('hide');
+   
+    fetchHorario(document.getElementById("fecha").value);
+    mostrar();
   });
+  Swal.fire({
+    icon: 'success',
+    title: 'Correcto!',
+    background: 'darkslategrey',
+  });  
+});
 
-})(jQuery);
 
 function fetchturns(fecha) {
-  //console.log(fecha)
   $.ajax({
     url: "../../db/turnos-list.php",
     type: "POST",
@@ -260,76 +42,126 @@ function fetchturns(fecha) {
     success: function (response) {
       if (response !== '') {
         const turnos = JSON.parse(response);
+
+        let horariosM = [];
+        elementList = document.querySelectorAll('.hora');
+        elementList.forEach(element => {
+          const hora = $(element)[0].firstElementChild;
+          horariosM.push(hora.innerHTML)
+        });
+
+        let horariosT = [];
+        elementList = document.querySelectorAll('.hora');
+        elementList.forEach(element => {
+          const hora = $(element)[0].firstElementChild;
+          horariosT.push(hora.innerHTML)
+        });
+
         if (turnos[0].length !== 0) {
           let template = "";
-          turnos[0].forEach((turnos) => {
-            var horaMorn = turnos.hora.slice(0, -3);
-            template += `
-                  <tr user_id="${turnos.id}">  
-                    <td class='1'>${horaMorn}</td>
+          horariosM.forEach(hora => {
+
+            turnos[0].forEach((turnos) => {
+              if (turnos.hora.slice(0, -3) == hora) {
+                let container = document.querySelector('tr[horario="' + hora + '"]');
+                while (container.firstChild) {
+                  container.removeChild(container.firstChild);
+                  container.removeAttribute('data-toggle', 'data-target', 'onclick');
+                }
+                template += `                  
+                    <td class='1'>${turnos.hora.slice(0, -3)}</td>
                     <td class='2'>${turnos.nombre}</td>
-                    <td class='3'>${turnos.apellido}</td>                    
-                    <td class='4'>${turnos.email}</td>
-                    <td class='5'>${turnos.telefono}</td>   
-                    <td ><button class="turn-delete btn btn btn-danger user-item" ;">
-                    Cancelar
-                  </button></td>                                     
-                  </tr>                   
+                    <td class='3'>${turnos.apellido}</td>
+                    <td class='4' style="display:none">${turnos.telefono}</td>  
+                    <td class='5' style="display:none">${turnos.email}</td> 
+                    <td align='right'><button class="turn-delete btn btn btn-danger">Cancelar</button></td> 
                   `;
+                $('tr[horario="' + hora + '"]').html(template);
+                container.setAttribute('user_id', turnos.id);
+                template = "";
+              }
+            });
           });
-          $("#users").html(template);
-        } else {
-          let template3 = "";
-          template3 += `
-                <tr>  
-                  <td COLSPAN="6" >No hay turnos registrados</td>                                                       
-                </tr>                                 
-                `;
-          $("#users").html(template3);
         }
         if (turnos[1].length !== 0) {
           let template2 = "";
-          turnos[1].forEach((turnos2) => {
-            var horaTarde = turnos2.hora.slice(0, -3);
+          horariosT.forEach(hora => {
+
+            turnos[1].forEach((turnos2) => {
+              if (turnos2.hora.slice(0, -3) == hora) {
+                let container = document.querySelector('tr[horario="' + hora + '"]');
+                while (container.firstChild) {
+                  container.removeChild(container.firstChild);
+                  container.removeAttribute('data-toggle', 'data-target', 'onclick');
+                }
+                template2 += `
+                        <td class='1'>${turnos2.hora.slice(0, -3)}</td>
+                        <td class='2'>${turnos2.nombre}</td>
+                        <td class='3'>${turnos2.apellido}</td> 
+                        <td class='4' style="display:none">${turnos2.telefono}</td>                     
+                        <td class='5' style="display:none">${turnos2.email}</td>                         
+                        <td align='right'><button class="turn-delete btn btn btn-danger">Cancelar</button></td> 
+                          `;
+                $('tr[horario="' + hora + '"]').html(template2);
+                container.setAttribute('user_id', turnos2.id);
+                template2 = "";
+              }
+            });
+          });
+        }
+      }
+    },
+  });
+  mostrar();
+}
+
+function fetchHorario(fecha) {
+  $.ajax({
+    url: "../../db/horario-list.php",
+    type: "POST",
+    data: "&fecha=" + fecha,
+    success: function (response) {
+      if (response !== '') {
+        const horario = JSON.parse(response);
+
+        //Horarios de la ma;ana
+        if (horario[0].length !== 0) {
+          let template = "";
+          horario[0].forEach((horario) => {
+            var horaMorn = horario.slice(0, -3);
+            template += `
+                  <tr class="hora" horario="${horaMorn}" data-toggle="modal" data-target="#myModal" href="#" onclick="myFunction(this)" >  
+                    <td class='1' ">${horaMorn}</td>
+                    <td COLSPAN="5" align='right' ></td>                                      
+                  </tr>                   
+                  `;
+          });
+          $("#turnos_mañana").html(template);
+        }
+
+        //Horarios de la tarde
+        if (horario[1].length !== 0) {
+          let template2 = "";
+          horario[1].forEach((horario2) => {
+            var horaTarde = horario2.slice(0, -3);
             template2 += `
-                <tr user_id="${turnos2.id}">  
-                  <td class='1'>${horaTarde}</td>       
-                  <td class='2'>${turnos2.nombre}</td>
-                  <td class='3'>${turnos2.apellido}</td>                           
-                  <td class='4'>${turnos2.email}</td>
-                  <td class='5'>${turnos2.telefono}</td>
-                  <td><button class="turn-delete btn btn btn-danger user-item">
-                  Cancelar
-                </button></td>                                           
-                </tr>                   
+            <tr class="hora" horario="${horaTarde}" data-toggle="modal" data-target="#myModal" href="#" onclick="myFunction(this)">  
+              <td class='1'>${horaTarde}</td>
+              <td COLSPAN="5" align='right'></td>                                      
+            </tr>                  
                 `;
           });
           $("#turnos_tarde").html(template2);
-
-        } else {
-          let template3 = "";
-          template3 += `
-                <tr>  
-                  <td COLSPAN="6" >No hay turnos registrados</td>                                                       
-                </tr>                                 
-                `;
-          $("#turnos_tarde").html(template3);
         }
-      }   
-      mostrar();
+        fetchturns(fecha);
+        mostrar();
+      }
     },
   });
-}
-$('#fecha').change(function () {
-  mostrar();
-  fetchturns(document.getElementById("fecha").value);
-  
-});
 
-fetchturns();
+}
 
 $(document).on("click", ".turn-delete", function () {
-
   Swal.fire({
     title: 'Estas seguro?',
     icon: 'warning',
@@ -345,7 +177,6 @@ $(document).on("click", ".turn-delete", function () {
       const turno_id = $(element).attr("user_id");
 
       $.post("../../db/cancelarTurno.php", { turno_id }, function (response) {
-        fetchturns();
         $("#form-turn").trigger("reset");
         Swal.fire({
           title: 'Borrado!',
@@ -354,10 +185,12 @@ $(document).on("click", ".turn-delete", function () {
           confirmButtonColor: '#3085d6',
           confirmButtonText: 'Ok!',
           showConfirmButton: false,
-          timer: 1500
+          timer: 1000
         })
+        fetchHorario(document.getElementById("fecha").value);
+        mostrar();
       });
-
+      
     }
   })
 });
@@ -366,16 +199,26 @@ $('#ver').change(function () {
   mostrar();
 });
 
-function mostrar(){
-  var ver = $("option:selected").map(function(){ return this.value }).get();
-  var ops = $("option").map(function(){ return this.value }).get();   
-  
+$('#fecha').change(function () {
+  fetchHorario(document.getElementById("fecha").value);
+  mostrar();
+});
+
+function mostrar() {
+  var ver = $("option:selected").map(function () { return this.value }).get();
+  var ops = $("option").map(function () { return this.value }).get();
   ops.forEach(dato => {
-    const found = ver.find(element => element == dato);  
-    if(found == undefined){
+    var found = ver.find(element => element == dato);
+    if (found == undefined) {
       $("." + dato + "").hide();
     } else {
       $("." + dato + "").show();
     }
   });
+}
+
+function myFunction(row) {
+  $("#nombre").val("");
+  $("#apellido").val("");
+  $("#hora").val(row.getAttribute("horario"));
 }

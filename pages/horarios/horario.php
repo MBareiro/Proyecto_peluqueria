@@ -57,7 +57,7 @@ if (!isset($_SESSION['id_user']) && !isset($_SESSION['id_rol'])) {
                                         <table class="table table-bordered">
 
                                             <thead>
-                                                <tr>
+                                                <tr style="background-color: black;">
                                                     <th>Dia</th>
                                                     <th>Activo</th>
                                                     <th>Turno mañana</th>

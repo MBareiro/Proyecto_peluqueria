@@ -94,7 +94,7 @@ $max = $Object->modify('+14 day')->format("Y-m-d");
                                     <div class="form-group row">
                                         <label for="fecha" class="col-sm-3 col-form-label">Fecha</label>
                                         <div class="col-sm-9">
-                                            <input type="date" id="fecha" min="<?php echo $DateAndTime ?>" max="<?php echo $max  ?>">
+                                            <input type="date" id="fecha" value="<?php echo date('Y-m-d');?>" min="<?php echo $DateAndTime ?>" max="<?php echo $max ?>">
                                         </div>
                                     </div>
 

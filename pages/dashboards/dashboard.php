@@ -58,38 +58,39 @@ if (!isset($_SESSION['id_user']) && !isset($_SESSION['id_rol'])) {
                   <div class="col col-lg-2">
                     <h4 class="card-title">Agenda de turnos</h4>
                   </div>
-                  <div class="col col-lg-3" >
+                  <div class="col col-lg-3">
                     <label for="fecha">Fecha:</label>
-                    <input type="date" id="fecha">
+                    <input type="date" id="fecha" value="<?php echo date('Y-m-d');?>">
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col col-lg-4">
+                  <div class="col col-md-auto">
                     <div class="form-group">
                       <label>Ver:</label>
                       <select id="ver" class="js-example-basic-multiple" multiple="multiple" style="width:100%">
                         <option value="1" selected>Hora</option>
                         <option value="2" selected>Nombre</option>
-                        <option value="3" selected>Apellido</option>                        
-                        <option value="4">Email</option>
-                        <option value="5">Telefono</option>
+                        <option value="3" selected>Apellido</option>
+                        <option value="4">Telefono</option>
+                        <option value="5">Email</option>                        
                       </select>
                     </div>
                   </div>
                 </div>
-                <div class="table-responsive">
-                  <table class="table table-striped">
+                <div class="table-responsive" id='tabla'>
+                  <table class="table table-dark">
                     <p>Turnos de la mañana</p>
                     <thead>
-                      <tr>
+                      <tr style="background-color: black;">
                         <td class='1'>Hora</td>
                         <td class='2'>Nombre</td>
-                        <td class='3'>Apellido</td>      
-                        <td class='4'>Email</td>
-                        <td class='5'>Telefono</td>
+                        <td class='3'>Apellido</td>                        
+                        <td class='4'>Telefono</td>
+                        <td class='5'>Email</td>
+                        <td class='6'></td>
                       </tr>
                     </thead>
-                    <tbody id="users"></tbody>
+                    <tbody id="turnos_mañana"></tbody>
                   </table>
                 </div>
               </div>
@@ -100,16 +101,17 @@ if (!isset($_SESSION['id_user']) && !isset($_SESSION['id_rol'])) {
             <div class="card">
               <div class="card-body">
 
-                <div class="table-responsive">
-                  <table class="table table-striped">
+                <div class="table-responsive" name='tabla'>
+                  <table class="table table-dark">
                     <p>Turnos de la tarde</p>
                     <thead>
-                      <tr>
-                      <td>Hora</td>
+                      <tr style="background-color: black;">
+                        <td class='1'>Hora</td>
                         <td class='2'>Nombre</td>
-                        <td class='3'>Apellido</td>                        
-                        <td class='4'>Fecha</td>
-                        <td class='5'>Telefono</td>
+                        <td class='3'>Apellido</td>
+                        <td class='4'>Telefono</td>
+                        <td class='5'>Email</td>
+                        <td class='6'></td>
                       </tr>
                     </thead>
                     <tbody id="turnos_tarde"></tbody>
@@ -132,6 +134,8 @@ if (!isset($_SESSION['id_user']) && !isset($_SESSION['id_rol'])) {
 
   <!-- plugins:js -->
   <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+  <script src="../../assets/vendors/select2/select2.min.js"></script>
+  <script src="../../assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- endinject -->
 
@@ -141,22 +145,52 @@ if (!isset($_SESSION['id_user']) && !isset($_SESSION['id_rol'])) {
   <!-- endinject -->
 
   <!-- Custom js for this page -->
-
-  <script src="../../assets/vendors/select2/select2.min.js"></script>
-  <script src="../../assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+  <script src="../../assets/js/select2.js"></script>
+  <script src="../../assets/js/typeahead.js"></script>
   <script src="../../assets/js/dashboard.js"></script>
-  <script src="../../assets/js/select2.js"></script>
-  <script src="../../assets/js/typeahead.js"></script>
-
-
-  <script src="../../assets/js/off-canvas.js"></script>
-  <script src="../../assets/js/hoverable-collapse.js"></script>
-  <script src="../../assets/js/misc.js"></script>
   <!-- endinject -->
-  <!-- Custom js for this page -->
-  <script src="../../assets/js/typeahead.js"></script>
-  <script src="../../assets/js/select2.js"></script>
-  <!-- End custom js for this page -->
+
+
 </body>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Crear turno</h4>
+      </div>
+      <div class="modal-body">
+      <input type="hidden" value='<?php echo $_SESSION['id_user'] ?>' id="id_user">
+      <input type="hidden" id="hora">
+        <form id="formTurno" action="" method="POST" class="forms-sample">
+          <input type="hidden" id="hora">
+          <input type="hidden" id="peluquero">
+          <div class="form-group row">
+            <label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="apellido" class="col-sm-3 col-form-label">Apellido</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="apellido" placeholder="Apellido">
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="cerrarModal" class="btn btn-primary mr-2">Guardar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 </html>

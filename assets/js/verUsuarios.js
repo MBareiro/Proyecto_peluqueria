@@ -8,16 +8,16 @@ $("#formEdit").submit(function (e) {
     nombre: $("#nombre").val(),
     apellido: $("#apellido").val(),
     email: $("#email").val(),
-    rol: $("#rol").val()
+    rol: $("#rolEdit").val()
   };
-
+console.log($("#rolEdit").val())
   //comprueba si se esta creando un nuevo reg o actualizando
   const url = "../../db/user-edit.php";
 
   $.post(url, postData, function (response) {
     // Resetea el formulario despues de presionar el boton guardar
     $("#form-user").trigger("reset");
-    //console.log(response);
+    console.log(response);
     fetchExps();
 
     //document.getElementById('form-exp').reset();
@@ -99,15 +99,6 @@ $(document).on("click", ".user-item", function () {
     $("#email").val(user.email);
     $("#rolEdit option[value=" + user.rol + "]").attr("selected", true);
   });
-});
-
-$(document).on("click", "#cerrarModal", function () {
-  Swal.fire({
-    icon: 'success',
-    title: 'Correcto!',
-    background: 'darkslategrey',
-  });
-  fetchExps();
 });
 
 $(document).ready(function () {
